@@ -1,0 +1,70 @@
+---
+sidebarTitle: function_observer
+title: agentchat.realtime_agent.function_observer
+---
+
+## FunctionObserver
+
+```python
+class FunctionObserver(RealtimeObserver)
+```
+
+Observer for handling function calls from the OpenAI Realtime API.
+
+### \_\_init\_\_
+
+```python
+def __init__(agent: "RealtimeAgent") -> None
+```
+
+Observer for handling function calls from the OpenAI Realtime API.
+
+**Arguments**:
+
+- `agent` _RealtimeAgent_ - The realtime agent attached to the observer.
+
+### update
+
+```python
+async def update(response: dict[str, Any]) -> None
+```
+
+Handle function call events from the OpenAI Realtime API.
+
+**Arguments**:
+
+- `response` _dict[str, Any]_ - The response from the OpenAI Realtime API.
+
+### call\_function
+
+```python
+async def call_function(call_id: str, name: str, kwargs: dict[str,
+                                                              Any]) -> None
+```
+
+Call a function registered with the agent.
+
+**Arguments**:
+
+- `call_id` _str_ - The ID of the function call.
+- `name` _str_ - The name of the function to call.
+- `kwargs` _Any[str, Any]_ - The arguments to pass to the function.
+
+### run
+
+```python
+async def run() -> None
+```
+
+Run the observer.
+
+Initialize the session with the OpenAI Realtime API.
+
+### initialize\_session
+
+```python
+async def initialize_session() -> None
+```
+
+Add registered tools to OpenAI with a session update.
+

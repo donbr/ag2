@@ -1,0 +1,48 @@
+---
+sidebarTitle: realtime_observer
+title: agentchat.realtime_agent.realtime_observer
+---
+
+## RealtimeObserver
+
+```python
+class RealtimeObserver(ABC)
+```
+
+Observer for the OpenAI Realtime API.
+
+### client
+
+```python
+@property
+def client() -> "OpenAIRealtimeClient"
+```
+
+Get the client associated with the observer.
+
+### register\_client
+
+```python
+def register_client(client: "OpenAIRealtimeClient") -> None
+```
+
+Register a client with the observer.
+
+### run
+
+```python
+@abstractmethod
+async def run() -> None
+```
+
+Run the observer.
+
+### update
+
+```python
+@abstractmethod
+async def update(message: dict[str, Any]) -> None
+```
+
+Update the observer with a message from the OpenAI Realtime API.
+

@@ -1,0 +1,129 @@
+---
+sidebarTitle: realtime_agent
+title: agentchat.realtime_agent.realtime_agent
+---
+
+## RealtimeAgent
+
+```python
+class RealtimeAgent(ConversableAgent)
+```
+
+(Experimental) Agent for interacting with the Realtime Clients.
+
+### \_\_init\_\_
+
+```python
+def __init__(*,
+             name: str,
+             audio_adapter: RealtimeObserver,
+             system_message: Optional[Union[
+                 str, list[str]]] = "You are a helpful AI Assistant.",
+             llm_config: Optional[Union[dict[str, Any],
+                                        Literal[False]]] = None,
+             voice: str = "alloy")
+```
+
+(Experimental) Agent for interacting with the Realtime Clients.
+
+**Arguments**:
+
+- `name` - str
+  the name of the agent
+- `audio_adapter` - RealtimeObserver
+  adapter for streaming the audio from the client
+- `system_message` - str or list
+  the system message for the client
+- `llm_config` - dict or False
+  the config for the LLM
+- `voice` - str
+  the voice to be used for the agent
+
+### register\_swarm
+
+```python
+def register_swarm(*,
+                   initial_agent: SwarmAgent,
+                   agents: list[SwarmAgent],
+                   system_message: Optional[str] = None) -> None
+```
+
+Register a swarm of agents with the Realtime Agent.
+
+**Arguments**:
+
+- `initial_agent` - SwarmAgent
+  the initial agent in the swarm
+- `agents` - list of SwarmAgent
+  the agents in the swarm
+- `system_message` - str
+  the system message for the client
+
+### run
+
+```python
+async def run() -> None
+```
+
+Run the agent.
+
+### reset\_answer
+
+```python
+def reset_answer() -> None
+```
+
+Reset the answer event.
+
+### set\_answer
+
+```python
+def set_answer(answer: str) -> str
+```
+
+Set the answer to the question.
+
+### get\_answer
+
+```python
+async def get_answer() -> str
+```
+
+Get the answer to the question.
+
+### ask\_question
+
+```python
+async def ask_question(question: str, question_timeout: int) -> None
+```
+
+Send a question for the user to the agent and wait for the answer.
+If the answer is not received within the timeout, the question is repeated.
+
+**Arguments**:
+
+- `question` - The question to ask the user.
+- `question_timeout` - The time in seconds to wait for the answer.
+
+### check\_termination\_and\_human\_reply
+
+```python
+def check_termination_and_human_reply(
+        messages: Optional[list[dict[str, Any]]] = None,
+        sender: Optional[Agent] = None,
+        config: Optional[Any] = None) -> tuple[bool, Union[str, None]]
+```
+
+Check if the conversation should be terminated and if the agent should reply.
+
+Called when its agents turn in the chat conversation.
+
+**Arguments**:
+
+- `messages` - list of dict
+  the messages in the conversation
+- `sender` - Agent
+  the agent sending the message
+- `config` - any
+  the config for the agent
+

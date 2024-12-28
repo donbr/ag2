@@ -1,0 +1,68 @@
+---
+sidebarTitle: twilio_observer
+title: agentchat.realtime_agent.twilio_observer
+---
+
+## TwilioAudioAdapter
+
+```python
+class TwilioAudioAdapter(RealtimeObserver)
+```
+
+Adapter for streaming audio from Twilio to OpenAI Realtime API and vice versa.
+
+### \_\_init\_\_
+
+```python
+def __init__(websocket: "WebSocket")
+```
+
+Adapter for streaming audio from Twilio to OpenAI Realtime API and vice versa.
+
+**Arguments**:
+
+- `websocket` - WebSocket
+  the websocket connection to the Twilio service
+
+### update
+
+```python
+async def update(response: dict[str, Any]) -> None
+```
+
+Receive events from the OpenAI Realtime API, send audio back to Twilio.
+
+### handle\_speech\_started\_event
+
+```python
+async def handle_speech_started_event() -> None
+```
+
+Handle interruption when the caller's speech starts.
+
+### send\_mark
+
+```python
+async def send_mark() -> None
+```
+
+Send a mark of audio interruption to the Twilio websocket.
+
+### run
+
+```python
+async def run() -> None
+```
+
+Run the adapter.
+
+Start reading messages from the Twilio websocket and send audio to OpenAI.
+
+### initialize\_session
+
+```python
+async def initialize_session() -> None
+```
+
+Control initial session with OpenAI.
+
