@@ -20,7 +20,7 @@ Binds the function to the agent so that agent is aware of it.
 ### bind\_user\_proxy
 
 ```python
-def bind_user_proxy(agent: UserProxyAgent, tool_root: str)
+def bind_user_proxy(agent: UserProxyAgent, tool_root: Union[str, list])
 ```
 
 Updates user proxy agent with a executor so that code executor can successfully execute function-related code.
@@ -29,7 +29,7 @@ Returns an updated user proxy.
 ## LocalExecutorWithTools
 
 ```python
-class LocalExecutorWithTools()
+class LocalExecutorWithTools(CodeExecutor)
 ```
 
 An executor that executes code blocks with injected tools. In this executor, the func within the tools can be called directly without declaring in the code block.
@@ -67,6 +67,15 @@ print(
 
 - `tools` - The tools to inject into the code execution environment. Default is an empty list.
 - `work_dir` - The working directory for the code execution. Default is the current directory.
+
+### code\_extractor
+
+```python
+@property
+def code_extractor() -> CodeExtractor
+```
+
+(Experimental) Export a code extractor that can be used by an agent.
 
 ### execute\_code\_blocks
 
