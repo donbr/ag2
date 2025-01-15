@@ -116,7 +116,7 @@ def create_qdrant_from_dir(
         quantization_config: Optional[models.QuantizationConfig] = None,
         hnsw_config: Optional[models.HnswConfigDiff] = None,
         payload_indexing: bool = False,
-        qdrant_client_options: Optional[dict] = \{})
+        qdrant_client_options: Optional[dict] = {})
 ```
 
 Create a Qdrant collection from all the files in a given directory, the directory can also be a single file or a
@@ -157,7 +157,7 @@ def query_qdrant(
         collection_name: str = "all-my-documents",
         search_string: str = "",
         embedding_model: str = "BAAI/bge-small-en-v1.5",
-        qdrant_client_options: Optional[dict] = \{}
+        qdrant_client_options: Optional[dict] = {}
 ) -> list[list[QueryResponse]]
 ```
 

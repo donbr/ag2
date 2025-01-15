@@ -1,6 +1,13 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/agentchat_swarm_graphrag_telemetry_trip_planner.ipynb
+description: FalkorDB GraphRAG utilises a knowledge graph and can be added as a capability
+  to agents. Together with a swarm orchestration of agents is highly effective at
+  providing a RAG capability.
 source_notebook: /notebook/agentchat_swarm_graphrag_telemetry_trip_planner.ipynb
+tags:
+- RAG
+- tool/function
+- swarm
 title: Using a local Telemetry server to monitor a GraphRAG agent
 ---
 
@@ -393,8 +400,7 @@ The functions necessary to query the Directions API to get travel times.
 
 ```python
 def _fetch_travel_time(origin: str, destination: str) -> dict:
-    """
-    Retrieves route information using Google Maps Directions API.
+    """Retrieves route information using Google Maps Directions API.
     API documentation at https://developers.google.com/maps/documentation/directions/get-directions
     """
     endpoint = "https://maps.googleapis.com/maps/api/directions/json"
@@ -414,7 +420,6 @@ def _fetch_travel_time(origin: str, destination: str) -> dict:
 
 def update_itinerary_with_travel_times(context_variables: dict) -> SwarmResult:
     """Update the complete itinerary with travel times between each event."""
-
     """
     Retrieves route information using Google Maps Directions API.
     API documentation at https://developers.google.com/maps/documentation/directions/get-directions
@@ -508,7 +513,6 @@ def mark_itinerary_as_complete(final_itinerary: str, context_variables: Dict[str
 
 def create_structured_itinerary(context_variables: Dict[str, Any], structured_itinerary: str) -> SwarmResult:
     """Once a structured itinerary is created, store it and pass on to the Route Timing agent."""
-
     # Ensure the itinerary is confirmed, if not, back to the Planner agent to confirm it with the customer
     if not context_variables["itinerary_confirmed"]:
         return SwarmResult(

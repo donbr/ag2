@@ -26,36 +26,33 @@ Gather usage summary from all agents.
 
 **Example**:
 
-  
 ```python
-\{
-    "usage_including_cached_inference" : \{
+{
+    "usage_including_cached_inference": {
         "total_cost": 0.0006090000000000001,
-        "gpt-35-turbo": \{
-                "cost": 0.0006090000000000001,
-                "prompt_tokens": 242,
-                "completion_tokens": 123,
-                "total_tokens": 365
+        "gpt-35-turbo": {
+            "cost": 0.0006090000000000001,
+            "prompt_tokens": 242,
+            "completion_tokens": 123,
+            "total_tokens": 365,
         },
     },
-
-    "usage_excluding_cached_inference" : \{
+    "usage_excluding_cached_inference": {
         "total_cost": 0.0006090000000000001,
-        "gpt-35-turbo": \{
-                "cost": 0.0006090000000000001,
-                "prompt_tokens": 242,
-                "completion_tokens": 123,
-                "total_tokens": 365
+        "gpt-35-turbo": {
+            "cost": 0.0006090000000000001,
+            "prompt_tokens": 242,
+            "completion_tokens": 123,
+            "total_tokens": 365,
         },
-    }
+    },
 }
 ```
   
 
 **Notes**:
 
-  
-  If none of the agents incurred any cost (not having a client), then the usage_including_cached_inference and usage_excluding_cached_inference will be `\{'total_cost': 0}`.
+  If none of the agents incurred any cost (not having a client), then the usage_including_cached_inference and usage_excluding_cached_inference will be `{'total_cost': 0}`.
 
 ### parse\_tags\_from\_content
 
@@ -75,26 +72,20 @@ can be a single string or a set of attribute-value pairs.
 
 **Examples**:
 
-  \<img http://example.com/image.png> -> [\{"tag": "img", "attr": \{"src": "http://example.com/image.png"}, "match": re.Match}]
-  \<audio text="Hello I'm a robot" prompt="whisper"> ->
-- `[\{"tag"` - "audio", "attr": \{"text": "Hello I'm a robot", "prompt": "whisper"}, "match": re.Match}]
-  
+  `<img http://example.com/image.png> -> [{"tag": "img", "attr": {"src": "http://example.com/image.png"}, "match": re.Match}]`
+    ```<audio text="Hello I'm a robot" prompt="whisper"> ->
+            [{"tag": "audio", "attr": {"text": "Hello I'm a robot", "prompt": "whisper"}, "match": re.Match}]```
 
-**Arguments**:
+Args:
+    tag (str): The HTML style tag to be parsed.
+    content (Union[str, List[Dict[str, Any]]]): The message content to parse. Can be a string or a list of content
+        items.
 
-- `tag` _str_ - The HTML style tag to be parsed.
-- `content` _Union[str, List[Dict[str, Any]]]_ - The message content to parse. Can be a string or a list of content
-  items.
-  
+Returns:
+    List[Dict[str, str]]: A list of dictionaries, where each dictionary represents a parsed tag. Each dictionary
+        contains three key-value pairs: 'type' which is the tag, 'attr' which is a dictionary of the parsed attributes,
+        and 'match' which is a regular expression match object.
 
-**Returns**:
-
-  List[Dict[str, str]]: A list of dictionaries, where each dictionary represents a parsed tag. Each dictionary
-  contains three key-value pairs: 'type' which is the tag, 'attr' which is a dictionary of the parsed attributes,
-  and 'match' which is a regular expression match object.
-  
-
-**Raises**:
-
-- `ValueError` - If the content is not a string or a list.
+Raises:
+    ValueError: If the content is not a string or a list.
 

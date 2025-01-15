@@ -7,15 +7,13 @@ Create an OpenAI-compatible client using Cerebras's API.
 
 **Example**:
 
-  llm_config=\{
-- `"config_list"` - [\{
-- `"api_type"` - "cerebras",
-- `"model"` - "llama3.1-8b",
-- `"api_key"` - os.environ.get("CEREBRAS_API_KEY")
-  }]
-  }
-  
-  agent = autogen.AssistantAgent("my_agent", llm_config=llm_config)
+    ```python
+    llm_config = {
+        "config_list": [{"api_type": "cerebras", "model": "llama3.1-8b", "api_key": os.environ.get("CEREBRAS_API_KEY")}]
+    }
+
+    agent = autogen.AssistantAgent("my_agent", llm_config=llm_config)
+    ```
   
   Install Cerebras's python library using: pip install --upgrade cerebras_cloud_sdk
   

@@ -1,6 +1,10 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/website/docs/topics/non-openai-models/cloud-gemini_vertexai.ipynb
+description: Using Gemini with AutoGen via VertexAI
 source_notebook: /website/docs/topics/non-openai-models/cloud-gemini_vertexai.ipynb
+tags:
+- gemini
+- vertexai
 title: Use AutoGen with Gemini via VertexAI
 ---
 
@@ -210,19 +214,10 @@ safety_settings = {
 
 
 ```python
-import os
-from typing import Any, Callable, Dict, List, Optional, Tuple, Type, Union
-
-import chromadb
-from PIL import Image
-from termcolor import colored
-
 import autogen
-from autogen import Agent, AssistantAgent, ConversableAgent, UserProxyAgent
-from autogen.agentchat.contrib.img_utils import _to_pil, get_image_data
+from autogen import AssistantAgent, UserProxyAgent
 from autogen.agentchat.contrib.multimodal_conversable_agent import MultimodalConversableAgent
-from autogen.agentchat.contrib.retrieve_user_proxy_agent import RetrieveUserProxyAgent
-from autogen.code_utils import DEFAULT_MODEL, UNKNOWN, content_str, execute_code, extract_code, infer_lang
+from autogen.code_utils import content_str
 ```
 
 

@@ -1,6 +1,13 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/agentchat_teachable_oai_assistants.ipynb
+description: Teach OpenAI assistants.
 source_notebook: /notebook/agentchat_teachable_oai_assistants.ipynb
+tags:
+- teachability
+- capability
+- learning
+- RAG
+- OpenAI Assistant
 title: Making OpenAI Assistants Teachable
 ---
 
@@ -172,9 +179,7 @@ ossinsight_api_schema = {
 
 
 def get_ossinsight(question):
-    """
-    Retrieve the top 10 developers with the most followers on GitHub.
-    """
+    """Retrieve the top 10 developers with the most followers on GitHub."""
     url = "https://api.ossinsight.io/explorer/answer"
     headers = {"Content-Type": "application/json"}
     data = {"question": question, "ignoreCache": True}

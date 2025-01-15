@@ -151,6 +151,7 @@ Configuration for this pydantic object.
 
 ```python
 @root_validator(skip_on_failure=True)
+@classmethod
 def validate_environment(cls, values: dict) -> dict
 ```
 

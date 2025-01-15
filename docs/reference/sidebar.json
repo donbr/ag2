@@ -88,7 +88,10 @@
                   ],
                   "label": "agentchat.contrib.captainagent.tools",
                   "type": "category"
-                }
+                },
+                "reference/agentchat/contrib/captainagent/agent_builder",
+                "reference/agentchat/contrib/captainagent/captainagent",
+                "reference/agentchat/contrib/captainagent/tool_retriever"
               ],
               "label": "agentchat.contrib.captainagent",
               "type": "category"
@@ -101,7 +104,9 @@
                 "reference/agentchat/contrib/graph_rag/graph_query_engine",
                 "reference/agentchat/contrib/graph_rag/graph_rag_capability",
                 "reference/agentchat/contrib/graph_rag/neo4j_graph_query_engine",
-                "reference/agentchat/contrib/graph_rag/neo4j_graph_rag_capability"
+                "reference/agentchat/contrib/graph_rag/neo4j_graph_rag_capability",
+                "reference/agentchat/contrib/graph_rag/neo4j_native_graph_query_engine",
+                "reference/agentchat/contrib/graph_rag/neo4j_native_graph_rag_capability"
               ],
               "label": "agentchat.contrib.graph_rag",
               "type": "category"
@@ -118,9 +123,7 @@
               "label": "agentchat.contrib.vectordb",
               "type": "category"
             },
-            "reference/agentchat/contrib/agent_builder",
             "reference/agentchat/contrib/agent_optimizer",
-            "reference/agentchat/contrib/captainagent",
             "reference/agentchat/contrib/gpt_assistant_agent",
             "reference/agentchat/contrib/img_utils",
             "reference/agentchat/contrib/llamaindex_conversable_agent",
@@ -134,7 +137,6 @@
             "reference/agentchat/contrib/society_of_mind_agent",
             "reference/agentchat/contrib/swarm_agent",
             "reference/agentchat/contrib/text_analyzer_agent",
-            "reference/agentchat/contrib/tool_retriever",
             "reference/agentchat/contrib/web_surfer"
           ],
           "label": "agentchat.contrib",
@@ -142,12 +144,13 @@
         },
         {
           "items": [
-            "reference/agentchat/realtime_agent/client",
             "reference/agentchat/realtime_agent/function_observer",
+            "reference/agentchat/realtime_agent/oai_realtime_client",
             "reference/agentchat/realtime_agent/realtime_agent",
+            "reference/agentchat/realtime_agent/realtime_client",
             "reference/agentchat/realtime_agent/realtime_observer",
-            "reference/agentchat/realtime_agent/twilio_observer",
-            "reference/agentchat/realtime_agent/websocket_observer"
+            "reference/agentchat/realtime_agent/twilio_audio_adapter",
+            "reference/agentchat/realtime_agent/websocket_audio_adapter"
           ],
           "label": "agentchat.realtime_agent",
           "type": "category"
@@ -183,6 +186,7 @@
             "reference/coding/jupyter/base",
             "reference/coding/jupyter/docker_jupyter_server",
             "reference/coding/jupyter/embedded_ipython_code_executor",
+            "reference/coding/jupyter/helpers",
             "reference/coding/jupyter/jupyter_client",
             "reference/coding/jupyter/jupyter_code_executor",
             "reference/coding/jupyter/local_jupyter_server"
@@ -244,9 +248,22 @@
     {
       "items": [
         "reference/logger/base_logger",
-        "reference/logger/file_logger"
+        "reference/logger/file_logger",
+        "reference/logger/logger_factory",
+        "reference/logger/logger_utils",
+        "reference/logger/sqlite_logger"
       ],
       "label": "logger",
+      "type": "category"
+    },
+    {
+      "items": [
+        "reference/messages/agent_messages",
+        "reference/messages/base_message",
+        "reference/messages/client_messages",
+        "reference/messages/print_message"
+      ],
+      "label": "messages",
       "type": "category"
     },
     {
@@ -270,6 +287,8 @@
     },
     {
       "items": [
+        "reference/tools/dependency_injection",
+        "reference/tools/function_utils",
         "reference/tools/tool"
       ],
       "label": "tools",
@@ -278,12 +297,12 @@
     "reference/browser_utils",
     "reference/code_utils",
     "reference/exception_utils",
-    "reference/function_utils",
     "reference/graph_utils",
     "reference/math_utils",
     "reference/retrieve_utils",
     "reference/runtime_logging",
-    "reference/token_count_utils"
+    "reference/token_count_utils",
+    "reference/types"
   ],
   "label": "Reference",
   "type": "category"

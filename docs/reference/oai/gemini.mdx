@@ -5,32 +5,35 @@ title: oai.gemini
 
 Create a OpenAI-compatible client for Gemini features.
 
-
 **Example**:
 
-  llm_config=\{
-- `"config_list"` - [\{
-- `"api_type"` - "google",
-- `"model"` - "gemini-pro",
-- `"api_key"` - os.environ.get("GOOGLE_GEMINI_API_KEY"),
-- `"safety_settings"` - [
-- `\{"category"` - "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_ONLY_HIGH"},
-- `\{"category"` - "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_ONLY_HIGH"},
-- `\{"category"` - "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_ONLY_HIGH"},
-- `\{"category"` - "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_ONLY_HIGH"}
-  ],
-  "top_p":0.5,
-- `"max_tokens"` - 2048,
-- `"temperature"` - 1.0,
-- `"top_k"` - 5
-  }
-  ]}
-  
-  agent = autogen.AssistantAgent("my_agent", llm_config=llm_config)
+    ```python
+    llm_config = {
+        "config_list": [
+            {
+                "api_type": "google",
+                "model": "gemini-pro",
+                "api_key": os.environ.get("GOOGLE_GEMINI_API_KEY"),
+                "safety_settings": [
+                    {"category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_ONLY_HIGH"},
+                    {"category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_ONLY_HIGH"},
+                    {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_ONLY_HIGH"},
+                    {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_ONLY_HIGH"},
+                ],
+                "top_p": 0.5,
+                "max_tokens": 2048,
+                "temperature": 1.0,
+                "top_k": 5,
+            }
+        ]
+    }
+
+    agent = autogen.AssistantAgent("my_agent", llm_config=llm_config)
+    ```
   
   Resources:
   - https://ai.google.dev/docs
-  - https://cloud.google.com/vertex-ai/docs/generative-ai/migrate-from-azure
+  - https://cloud.google.com/vertex-ai/generative-ai/docs/migrate/migrate-from-azure-to-gemini
   - https://blog.google/technology/ai/google-gemini-pro-imagen-duet-ai-update/
   - https://ai.google.dev/api/python/google/generativeai/ChatSession
 

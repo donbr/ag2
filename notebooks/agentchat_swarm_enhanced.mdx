@@ -1,6 +1,11 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/agentchat_swarm_enhanced.ipynb
+description: Swarm Ochestration
 source_notebook: /notebook/agentchat_swarm_enhanced.ipynb
+tags:
+- orchestration
+- group chat
+- swarm
 title: Enhanced Swarm Orchestration with AG2
 ---
 
@@ -173,7 +178,6 @@ ORDER_DATABASE = {
 # ORDER FUNCTIONS
 def check_order_id(order_id: str, context_variables: dict) -> SwarmResult:
     """Check if the order ID is valid"""
-
     # Restricts order to checking to the logged in user
     if (
         context_variables["logged_in_username"]
@@ -193,7 +197,6 @@ def check_order_id(order_id: str, context_variables: dict) -> SwarmResult:
 
 def record_order_id(order_id: str, context_variables: dict) -> SwarmResult:
     """Record the order ID in the workflow context"""
-
     if order_id not in ORDER_DATABASE:
         return SwarmResult(
             context_variables=context_variables,

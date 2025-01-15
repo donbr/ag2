@@ -92,7 +92,7 @@ you could do the following:
 ```python
 import pandas as pd
 from pandas import DataFrame
-from pandas import DataFrame as df
+from pandas import DataFrame as Df
 
 from autogen.coding.func_with_reqs import Alias, ImportFromModule, with_requirements
 
@@ -105,8 +105,8 @@ def some_func1() -> pd.DataFrame: ...
 def some_func2() -> DataFrame: ...
 
 
-@with_requirements(python_packages=["pandas"], global_imports=[ImportFromModule("pandas", Alias("DataFrame", "df"))])
-def some_func3() -> df: ...
+@with_requirements(python_packages=["pandas"], global_imports=[ImportFromModule("pandas", Alias("DataFrame", "Df"))])
+def some_func3() -> Df: ...
 ```
 
 ## Provide the function to the executor
@@ -130,7 +130,7 @@ writes code that looks like this the executor will be able to handle it.
 
 ```python
 code = f"""
-from {LocalCommandLineCodeExecutor.FUNCTIONS_MODULE} import add_two_numbers
+from {LocalCommandLineCodeExecutor.functions_module} import add_two_numbers
 
 print(add_two_numbers(1, 2))
 """
@@ -144,15 +144,11 @@ print(
 )
 ```
 
-``` text
-exit_code=0 output='3\n' code_file='/Users/jackgerrits/w/autogen/website/docs/topics/code-execution/coding/tmp_code_1958fe3aea3e8e3c6e907fe951b5f6ab.py'
-```
-
 And we can try the function that required a dependency and import too.
 
 ```python
 code = f"""
-from {LocalCommandLineCodeExecutor.FUNCTIONS_MODULE} import load_data
+from {LocalCommandLineCodeExecutor.functions_module} import load_data
 
 print(load_data())
 """
@@ -164,14 +160,6 @@ result = executor.execute_code_blocks(
 )
 
 print(result.output)
-```
-
-``` text
-    name  location  age
-0   John  New York   24
-1   Anna     Paris   13
-2  Peter    Berlin   53
-3  Linda    London   33
 ```
 
 ### Limitations
@@ -211,32 +199,6 @@ If you want the user to save the code in a file before executing it, put # filen
 code_writer_system_message += executor.format_functions_for_prompt()
 
 print(code_writer_system_message)
-```
-
-``` text
-
-You have been given coding capability to solve tasks using Python code.
-In the following cases, suggest python code (in a python coding block) or shell script (in a sh coding block) for the user to execute.
-    1. When you need to collect info, use the code to output the info you need, for example, browse or search the web, download/read a file, print the content of a webpage or a file, get the current date/time, check the operating system. After sufficient info is printed and the task is ready to be solved based on your language skill, you can solve the task by yourself.
-    2. When you need to perform some task with code, use the code to perform the task and output the result. Finish the task smartly.
-Solve the task step by step if you need to. If a plan is not provided, explain your plan first. Be clear which step uses code, and which step uses your language skill.
-When using code, you must indicate the script type in the code block. The user cannot provide any other feedback or perform any other action beyond executing the code you suggest. The user can't modify your code. So do not suggest incomplete code which requires users to modify. Don't use a code block if it's not intended to be executed by the user.
-If you want the user to save the code in a file before executing it, put # filename: <filename> inside the code block as the first line. Don't include multiple code blocks in one response. Do not ask users to copy and paste the result. Instead, use 'print' function for the output when relevant. Check the execution result returned by the user.
-You have access to the following user defined functions. They can be accessed from the module called `functions` by their function names.
-
-For example, if there was a function called `foo` you could import it by writing `from functions import foo`
-
-def add_two_numbers(a: int, b: int) -> int:
-    """Add two numbers together."""
-    ...
-
-def load_data() -> pandas.core.frame.DataFrame:
-    """Load some sample data.
-
-        Returns:
-            pandas.DataFrame: A DataFrame with the following columns: name(str), location(str), age(int)
-    """
-    ...
 ```
 
 Then you can use this system message for your code writing agent.
@@ -281,60 +243,8 @@ chat_result = code_executor_agent.initiate_chat(
 )
 ```
 
-```` text
-code_executor_agent (to code_writer):
-
-Please use the load_data function to load the data and please calculate the average age of all people.
-
---------------------------------------------------------------------------------
-code_writer (to code_executor_agent):
-
-Below is the python code to load the data using the `load_data()` function and calculate the average age of all people. 
-
-```python
-# python code
-from functions import load_data
-import numpy as np
-
-# Load the data
-df = load_data()
-
-# Calculate the average age
-avg_age = np.mean(df['age'])
-
-print("The average age is", avg_age)
-```
-
-This code starts by importing the `load_data()` function. It then uses this function to load the data into a variable `df`. Afterwards, it calculates the average (mean) of the 'age' column in the DataFrame, before printing the result.
-
---------------------------------------------------------------------------------
-
->>>>>>>> EXECUTING CODE BLOCK (inferred language is python)...
-code_executor_agent (to code_writer):
-
-exitcode: 0 (execution succeeded)
-Code output: The average age is 30.75
-
-
---------------------------------------------------------------------------------
-code_writer (to code_executor_agent):
-
-Great! The code worked fine. So, the average age of all people in the dataset is 30.75 years.
-
---------------------------------------------------------------------------------
-code_executor_agent (to code_writer):
-
-
-
---------------------------------------------------------------------------------
-````
-
 We can see the summary of the calculation:
 
 ```python
 print(chat_result.summary)
-```
-
-``` text
-The average age of all people in the dataset is 30.75 years.
 ```

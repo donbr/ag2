@@ -42,7 +42,7 @@ Validates a given config parameter, checking its type, values, and setting defau
   Example Usage:
 ```python
     # Validating a numerical parameter within specific bounds
-    params = \{"temperature": 0.5, "safety_model": "Meta-Llama/Llama-Guard-7b"}
+    params = {"temperature": 0.5, "safety_model": "Meta-Llama/Llama-Guard-7b"}
     temperature = validate_parameter(params, "temperature", (int, float), True, 0.7, (0, 1), None)
     # Result: 0.5
 

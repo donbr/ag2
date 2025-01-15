@@ -55,8 +55,8 @@ def __init__(name="RetrieveChatAgent",
   If it's a string, it should be the type of the vector db, such as "chroma"; otherwise,
   it should be an instance of the VectorDB protocol. Default is "chroma".
   Set `None` to use the deprecated `client`.
-  - `db_config` (Optional, Dict) - the config for the vector db. Default is `\{}`. Please make
-  sure you understand the config for the vector db you are using, otherwise, leave it as `\{}`.
+  - `db_config` (Optional, Dict) - the config for the vector db. Default is `{}`. Please make
+  sure you understand the config for the vector db you are using, otherwise, leave it as `{}`.
   Only valid when `vector_db` is a string.
   - `client` (Optional, chromadb.Client) - the chromadb client. If key not provided, a
   default client `chromadb.Client()` will be used. If you want to use other
@@ -137,14 +137,13 @@ def __init__(name="RetrieveChatAgent",
   - `recursive` (Optional, bool) - whether to search documents recursively in the
   docs_path. Default is True.
   - `distance_threshold` (Optional, float) - the threshold for the distance score, only
-  distance smaller than it will be returned. Will be ignored if \< 0. Default is -1.
+  distance smaller than it will be returned. Will be ignored if < 0. Default is -1.
   
 - ``**kwargs`` _dict_ - other kwargs in [UserProxyAgent](../user_proxy_agent#init).
   
 
 **Example**:
 
-  
   Example of overriding retrieve_docs - If you have set up a customized vector db, and it's
   not compatible with chromadb, you can easily plug in it with below code.
   *[Deprecated]* use `vector_db` instead. You can extend VectorDB and pass it to the agent.
@@ -211,6 +210,7 @@ Generate an initial message with the given context for the RetrieveUserProxyAgen
   - `problem` (str) - the problem to be solved.
   - `n_results` (int) - the number of results to be retrieved. Default is 20.
   - `search_string` (str) - only docs that contain an exact match of this string will be retrieved. Default is "".
+  
 
 **Returns**:
 

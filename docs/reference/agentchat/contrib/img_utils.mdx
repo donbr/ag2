@@ -57,7 +57,7 @@ Formats the input prompt by replacing image tags and returns the new prompt alon
 
 **Arguments**:
 
-  - prompt (str): The input string that may contain image tags like \<img ...>.
+  - prompt (str): The input string that may contain image tags like `<img ...>`.
   - order_image_tokens (bool, optional): Whether to order the image tokens with numbers.
   It will be useful for GPT-4V. Defaults to False.
   
@@ -94,7 +94,7 @@ Formats the input prompt by replacing image tags and returns a list of text and 
 
 **Arguments**:
 
-  - prompt (str): The input string that may contain image tags like \<img ...>.
+  - prompt (str): The input string that may contain image tags like `<img ...>`.
   - img_format (str): what image format should be used. One of "uri", "url", "pil".
   
 
@@ -145,26 +145,28 @@ with an 'image_url' key. The function then converts the PIL image URL
   'image_url' key converted to base64 encoded data URIs.
   
   Example Input:
-  [
-- `\{'content'` - [\{'type': 'text', 'text': 'You are a helpful AI assistant.'}], 'role': 'system'},
-- `\{'content'` - [
-- `\{'type'` - 'text', 'text': "What's the breed of this dog here?
-  "},
-- `\{'type'` - 'image_url', 'image_url': \{'url': a PIL.Image.Image}},
-- `\{'type'` - 'text', 'text': '.'}],
-- `'role'` - 'user'}
-  ]
+    ```python
+    [
+        {'content': [{'type': 'text', 'text': 'You are a helpful AI assistant.'}], 'role': 'system'},
+        {'content': [
+            {'type': 'text', 'text': "What's the breed of this dog here?"},
+            {'type': 'image_url', 'image_url': {'url': a PIL.Image.Image}},
+            {'type': 'text', 'text': '.'}],
+        'role': 'user'}
+    ]
+    ```
   
   Example Output:
-  [
-- `\{'content'` - [\{'type': 'text', 'text': 'You are a helpful AI assistant.'}], 'role': 'system'},
-- `\{'content'` - [
-- `\{'type'` - 'text', 'text': "What's the breed of this dog here?
-  "},
-- `\{'type'` - 'image_url', 'image_url': \{'url': a B64 Image}},
-- `\{'type'` - 'text', 'text': '.'}],
-- `'role'` - 'user'}
-  ]
+    ```python
+    [
+        {'content': [{'type': 'text', 'text': 'You are a helpful AI assistant.'}], 'role': 'system'},
+        {'content': [
+            {'type': 'text', 'text': "What's the breed of this dog here?"},
+            {'type': 'image_url', 'image_url': {'url': a B64 Image}},
+            {'type': 'text', 'text': '.'}],
+        'role': 'user'}
+    ]
+    ```
 
 ### num\_tokens\_from\_gpt\_image
 
@@ -198,7 +200,7 @@ Reference: https://openai.com/api/pricing/
 
   --------
   >>> from PIL import Image
-  >>> img = Image.new('RGB', (2500, 2500), color = 'red')
+  >>> img = Image.new("RGB", (2500, 2500), color="red")
   >>> num_tokens_from_gpt_image(img, model="gpt-4-vision")
   765
 

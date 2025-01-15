@@ -1,6 +1,11 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/agentchat_nested_chats_chess_altmodels.ipynb
+description: LLM-backed agents playing chess with each other using nested chats.
 source_notebook: /notebook/agentchat_nested_chats_chess_altmodels.ipynb
+tags:
+- nested chat
+- tool/function
+- orchestration
 title: Conversational Chess using non-OpenAI clients
 ---
 
@@ -110,7 +115,7 @@ def make_move(
     move: Annotated[
         str,
         "Call this tool to make a move after you have the list of legal moves and want to make a move. Takes UCI format, e.g. e2e4 or e7e5 or e7e8q.",
-    ]
+    ],
 ) -> Annotated[str, "Result of the move."]:
     move = chess.Move.from_uci(move)
     board.push_uci(str(move))

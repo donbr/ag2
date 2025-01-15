@@ -1,6 +1,11 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/agentchat_reasoning_agent.ipynb
+description: Use ReasoningAgent for o1 style reasoning in Agentic workflows with LLMs
+  using AG2
 source_notebook: /notebook/agentchat_reasoning_agent.ipynb
+tags:
+- reasoning agent
+- tree of thoughts
 title: ReasoningAgent - Advanced LLM Reasoning with Multiple Search Strategies
 ---
 
@@ -69,7 +74,7 @@ dictionary:
 import os
 import random
 
-from autogen import AssistantAgent, ReasoningAgent, ThinkNode, UserProxyAgent, visualize_tree
+from autogen import AssistantAgent, ReasoningAgent, ThinkNode, UserProxyAgent
 
 api_key = os.environ.get("OPENAI_API_KEY")
 
@@ -3594,7 +3599,6 @@ reason_agent_for_writer = ReasoningAgent(
     verbose=verbose,
     reason_config={"method": "lats", "nsim": 2, "max_depth": 3},
 )
-
 ```
 
 ## Save data to future training
@@ -3612,7 +3616,6 @@ agent.
 
 ```python
 import json
-import pickle
 ```
 
 

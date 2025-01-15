@@ -1,6 +1,10 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/agentchat_sql_spider.ipynb
+description: Natural language text to SQL query using the Spider text-to-SQL benchmark.
 source_notebook: /notebook/agentchat_sql_spider.ipynb
+tags:
+- SQL
+- tool/function
 title: SQL Agent for Spider text-to-SQL benchmark
 ---
 
@@ -111,7 +115,7 @@ def check_termination(msg: Dict):
         return False
     json_str = msg["tool_responses"][0]["content"]
     obj = json.loads(json_str)
-    return "error" not in obj or obj["error"] is None and obj["reward"] == 1
+    return "error" not in obj or (obj["error"] is None and obj["reward"] == 1)
 
 
 sql_writer = ConversableAgent(

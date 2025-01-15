@@ -1,6 +1,13 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/agentchat_nestedchat_optiguide.ipynb
+description: This is a nested chat re-implementation of OptiGuide which is an LLM-based
+  supply chain optimization framework.
 source_notebook: /notebook/agentchat_nestedchat_optiguide.ipynb
+tags:
+- nested chat
+- hierarchical chat
+- code generation
+- orchestration
 title: OptiGuide with Nested Chats in AutoGen
 ---
 
@@ -52,7 +59,7 @@ from autogen.code_utils import extract_code
 config_list_gpt4 = autogen.config_list_from_json(
     "OAI_CONFIG_LIST",
     filter_dict={
-        "model": ["gpt-4", "gpt4", "gpt-3.5-turbo" "gpt-4-32k", "gpt-4-32k-0314", "gpt-4-32k-v0314"],
+        "model": ["gpt-4", "gpt4", "gpt-3.5-turbogpt-4-32k", "gpt-4-32k-0314", "gpt-4-32k-v0314"],
     },
 )
 llm_config = {"config_list": config_list_gpt4}
@@ -108,8 +115,7 @@ end of the source code to give a glimpse of its structure and content.
 
 ```python
 def replace(src_code: str, old_code: str, new_code: str) -> str:
-    """
-    Inserts new code into the source code by replacing a specified old
+    """Inserts new code into the source code by replacing a specified old
     code block.
 
     Args:
@@ -144,8 +150,7 @@ def replace(src_code: str, old_code: str, new_code: str) -> str:
 
 
 def insert_code(src_code: str, new_lines: str) -> str:
-    """insert a code patch into the source code.
-
+    """Insert a code patch into the source code.
 
     Args:
         src_code (str): the full source code
@@ -177,7 +182,7 @@ def run_with_exec(src_code: str) -> Union[str, Exception]:
 
     timeout = Timeout(
         60,
-        TimeoutError("This is a timeout exception, in case " "GPT's code falls into infinite loop."),
+        TimeoutError("This is a timeout exception, in case GPT's code falls into infinite loop."),
     )
     try:
         exec(src_code, locals_dict, locals_dict)
@@ -459,7 +464,7 @@ def writer_init_messsage(recipient, messages, sender, config):
     # board = config
     # get execution result of the original source code
     sender_history = recipient.chat_messages[sender]
-    user_chat_history = "\nHere are the history of discussions:\n" f"{sender_history}"
+    user_chat_history = f"\nHere are the history of discussions:\n{sender_history}"
 
     if sender.name == "user":
         execution_result = msg_content  # TODO: get the execution result of the original source code

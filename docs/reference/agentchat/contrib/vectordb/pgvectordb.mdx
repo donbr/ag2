@@ -41,6 +41,7 @@ Initialize the Collection object.
 - `embedding_function` - The embedding function used to generate the vector representation.
 - `metadata` - The metadata of the collection.
 - `get_or_create` - The flag indicating whether to get or create the collection.
+  
 
 **Returns**:
 
@@ -386,7 +387,7 @@ Note: connection_string or host + port + dbname must be specified
   Models can be chosen from:
   https://huggingface.co/models?library=sentence-transformers
 - `metadata` - dict | The metadata of the vector database. Default is None. If None, it will use this
-- `setting` - \{"hnsw:space": "ip", "hnsw:construction_ef": 30, "hnsw:M": 16}. Creates Index on table
+- `setting` - `{"hnsw:space": "ip", "hnsw:construction_ef": 30, "hnsw:M": 16}`. Creates Index on table
   using hnsw (embedding vector_l2_ops) WITH (m = hnsw:M) ef_construction = "hnsw:construction_ef".
   For more info: https://github.com/pgvector/pgvector?tab=readme-ov-file#hnsw
 
@@ -568,7 +569,7 @@ Retrieve documents from the collection of the vector database based on the queri
 - `collection_name` - str | The name of the collection. Default is None.
 - `n_results` - int | The number of relevant documents to return. Default is 10.
 - `distance_threshold` - float | The threshold for the distance score, only distance smaller than it will be
-  returned. Don't filter with it if \< 0. Default is -1.
+  returned. Don't filter with it if `< 0`. Default is -1.
 - `kwargs` - Dict | Additional keyword arguments.
   
 

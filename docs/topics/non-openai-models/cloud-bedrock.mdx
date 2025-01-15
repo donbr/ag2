@@ -1,6 +1,9 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/website/docs/topics/non-openai-models/cloud-bedrock.ipynb
+description: Define and load a custom model
 source_notebook: /website/docs/topics/non-openai-models/cloud-bedrock.ipynb
+tags:
+- custom model
 title: Amazon Bedrock
 ---
 
@@ -752,11 +755,8 @@ We’ll use a Multimodal agent to handle the image
 
 ```python
 import autogen
-from autogen import Agent, AssistantAgent, ConversableAgent, UserProxyAgent
-from autogen.agentchat.contrib.capabilities.vision_capability import VisionCapability
-from autogen.agentchat.contrib.img_utils import get_pil_image, pil_to_data_uri
+from autogen import AssistantAgent, UserProxyAgent
 from autogen.agentchat.contrib.multimodal_conversable_agent import MultimodalConversableAgent
-from autogen.code_utils import content_str
 
 image_agent = MultimodalConversableAgent(
     name="image-explainer",

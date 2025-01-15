@@ -48,7 +48,7 @@ Initiate a list of chats.
 - `chat_queue` _List[Dict]_ - A list of dictionaries containing the information about the chats.
   
   Each dictionary should contain the input arguments for
-  [`ConversableAgent.initiate_chat`](/docs/reference/agentchat/conversable_agent#initiate_chat).
+  [`ConversableAgent.initiate_chat`](/docs/reference/agentchat/conversable_agent#initiate-chat).
   For example:
   - `"sender"` - the sender agent.
   - `"recipient"` - the recipient agent.
@@ -63,7 +63,7 @@ Initiate a list of chats.
   - `"summary_method"` (str or callable) - a string or callable specifying the method to get
   a summary from the chat. Default is DEFAULT_summary_method, i.e., "last_msg".
   - `"summary_args"` (dict) - a dictionary of arguments to be passed to the summary_method.
-  Default is \{}.
+  Default is {}.
   - `"message"` (str, callable or None) - if None, input() will be called to get the
   initial message.
   - `**context` - additional context information to be passed to the chat.
@@ -73,6 +73,7 @@ Initiate a list of chats.
   - `"finished_chat_indexes_to_exclude_from_carryover"` - It can be used by specifying a list of indexes of the finished_chats list,
   from which to exclude the summaries for carryover. If 'finished_chat_indexes_to_exclude_from_carryover' is not provided or an empty list,
   then summary from all the finished chats will be taken.
+  
 
 **Returns**:
 
@@ -87,10 +88,13 @@ async def a_initiate_chats(
 
 (async) Initiate a list of chats.
 
-args:
-- Please refer to `initiate_chats`.
+**Arguments**:
 
+  - Please refer to `initiate_chats`.
+  
+  
 
-returns:
-- (Dict): a dict of ChatId: ChatResult corresponding to the finished chats in the chat_queue.
+**Returns**:
+
+- `-` _Dict_ - a dict of ChatId: ChatResult corresponding to the finished chats in the chat_queue.
 

@@ -1,6 +1,13 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/agentchat_RetrieveChat_mongodb.ipynb
+description: Explore the use of AutoGen's RetrieveChat for tasks like code generation
+  from docstrings, answering complex questions with human feedback, and exploiting
+  features like Update Context, custom prompts, and few-shot learning.
 source_notebook: /notebook/agentchat_RetrieveChat_mongodb.ipynb
+tags:
+- MongoDB
+- integration
+- RAG
 title: Using RetrieveChat Powered by MongoDB Atlas for Retrieve Augmented Code Generation
   and Question Answering
 ---
@@ -58,10 +65,8 @@ more on Cluster support
 ## Set your API Endpoint
 
 ```python
-import json
 import os
 
-import autogen
 from autogen import AssistantAgent
 from autogen.agentchat.contrib.retrieve_user_proxy_agent import RetrieveUserProxyAgent
 

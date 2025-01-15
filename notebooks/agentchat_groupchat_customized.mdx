@@ -1,6 +1,10 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/agentchat_groupchat_customized.ipynb
+description: Introduce group chat with customized speaker selection method.
 source_notebook: /notebook/agentchat_groupchat_customized.ipynb
+tags:
+- orchestration
+- group chat
 title: Group Chat with Customized Speaker Selection Method
 ---
 
@@ -156,7 +160,6 @@ executor = autogen.UserProxyAgent(
     },  # Please set use_docker=True if docker is available to run the generated code. Using docker is safer than running the generated code directly.
 )
 
-from typing import Dict, List
 
 from autogen import Agent
 

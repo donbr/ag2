@@ -7,15 +7,19 @@ Create an OpenAI-compatible client using Together.AI's API.
 
 **Example**:
 
-  llm_config=\{
-- `"config_list"` - [\{
-- `"api_type"` - "together",
-- `"model"` - "mistralai/Mixtral-8x7B-Instruct-v0.1",
-- `"api_key"` - os.environ.get("TOGETHER_API_KEY")
-  }
-  ]}
-  
-  agent = autogen.AssistantAgent("my_agent", llm_config=llm_config)
+    ```python
+    llm_config = {
+        "config_list": [
+            {
+                "api_type": "together",
+                "model": "mistralai/Mixtral-8x7B-Instruct-v0.1",
+                "api_key": os.environ.get("TOGETHER_API_KEY"),
+            }
+        ]
+    }
+
+    agent = autogen.AssistantAgent("my_agent", llm_config=llm_config)
+    ```
   
   Install Together.AI python library using: pip install --upgrade together
   

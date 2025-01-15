@@ -340,13 +340,13 @@ from autogen import ConversableAgent, register_function
 
 player_white = ConversableAgent(
     name="Player White",
-    system_message="You are a chess player and you play as white. " "Always call make_move() to make a move",
+    system_message="You are a chess player and you play as white. Always call make_move() to make a move",
     llm_config={"config_list": config_list, "cache_seed": None},
 )
 
 player_black = ConversableAgent(
     name="Player Black",
-    system_message="You are a chess player and you play as black. " "Always call make_move() to make a move",
+    system_message="You are a chess player and you play as black. Always call make_move() to make a move",
     llm_config={"config_list": config_list, "cache_seed": None},
 )
 

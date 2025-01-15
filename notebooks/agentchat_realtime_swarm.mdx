@@ -1,6 +1,11 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/agentchat_realtime_swarm.ipynb
+description: Swarm Ochestration
 source_notebook: /notebook/agentchat_realtime_swarm.ipynb
+tags:
+- orchestration
+- group chat
+- swarm
 title: RealtimeAgent in a Swarm Orchestration
 ---
 
@@ -53,6 +58,10 @@ For more information, please refer to the [installation guide](/docs/installatio
 </div>
 
 
+```python
+!pip install "ag2[twilio]"
+```
+
 ## Prepare your `llm_config` and `realtime_llm_config`
 
 The
@@ -86,7 +95,7 @@ assert config_list, "No LLM found for the given model"
 realtime_config_list = autogen.config_list_from_json(
     "OAI_CONFIG_LIST",
     filter_dict={
-        "tags": ["realtime"],
+        "tags": ["gpt-4o-mini-realtime"],
     },
 )
 
@@ -102,7 +111,7 @@ assert realtime_config_list, (
     {
         "model": "gpt-4o-realtime-preview",
         "api_key": "sk-***********************...*",
-        "tags": ["gpt-4o-realtime", "realtime"]
+        "tags": ["gpt-4o-mini-realtime", "realtime"]
     }"""
 )
 ```

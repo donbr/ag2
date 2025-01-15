@@ -6,10 +6,10 @@ title: oai.completion
 ## Completion
 
 ```python
-class Completion(openai_Completion)
+class Completion(OpenAICompletion)
 ```
 
-(openai\<1) A class for OpenAI completion API.
+`(openai<1)` A class for OpenAI completion API.
 
 It also supports: ChatCompletion, Azure OpenAI API.
 
@@ -29,7 +29,7 @@ Set cache path.
 - `seed` _int, Optional_ - The integer identifier for the pseudo seed.
   Results corresponding to different seeds will be cached in different places.
 - `cache_path` _str, Optional_ - The root path for the cache.
-  The complete cache path will be \{cache_path_root}/\{seed}.
+  The complete cache path will be {cache_path_root}/{seed}.
 
 ### clear\_cache
 
@@ -47,7 +47,7 @@ Clear cache.
 - `seed` _int, Optional_ - The integer identifier for the pseudo seed.
   If omitted, all caches under cache_path_root will be cleared.
 - `cache_path` _str, Optional_ - The root path for the cache.
-  The complete cache path will be \{cache_path_root}/\{seed}.
+  The complete cache path will be {cache_path_root}/{seed}.
 
 ### tune
 
@@ -89,7 +89,7 @@ def eval_func(responses, **data):
         response = responses[i]
         succeed = is_equiv_chain_of_thought(response, solution)
         success_list.append(succeed)
-    return \{
+    return {
         "expected_success": 1 - pow(1 - sum(success_list) / n, n),
         "success": any(s for s in success_list),
     }
@@ -141,7 +141,7 @@ Make a completion for a given context.
 
 - `context` _Dict, Optional_ - The context to instantiate the prompt.
   It needs to contain keys that are used by the prompt template or the filter function.
-  E.g., `prompt="Complete the following sentence: \{prefix}, context=\{"prefix": "Today I feel"}`.
+  E.g., `prompt="Complete the following sentence: {prefix}, context={"prefix": "Today I feel"}`.
   The actual prompt will be:
   "Complete the following sentence: Today I feel".
   More examples can be found at [templating](https://docs.ag2.ai/docs/Use-Cases/enhanced_inference#templating).
@@ -154,24 +154,24 @@ Make a completion for a given context.
 ```python
 response = oai.Completion.create(
     config_list=[
-        \{
+        {
             "model": "gpt-4",
             "api_key": os.environ.get("AZURE_OPENAI_API_KEY"),
             "api_type": "azure",
             "base_url": os.environ.get("AZURE_OPENAI_API_BASE"),
             "api_version": "2024-02-01",
         },
-        \{
+        {
             "model": "gpt-3.5-turbo",
             "api_key": os.environ.get("OPENAI_API_KEY"),
             "api_type": "openai",
             "base_url": "https://api.openai.com/v1",
         },
-        \{
+        {
             "model": "llama-7B",
             "base_url": "http://127.0.0.1:8080",
             "api_type": "openai",
-        }
+        },
     ],
     prompt="Hi",
 )
@@ -241,7 +241,7 @@ def eval_func(responses, **data):
         response = responses[i]
         succeed = is_equiv_chain_of_thought(response, solution)
         success_list.append(succeed)
-    return \{
+    return {
         "expected_success": 1 - pow(1 - sum(success_list) / n, n),
         "success": any(s for s in success_list),
     }
@@ -252,7 +252,7 @@ def eval_func(responses, **data):
   An example agg_method in str:
   
 ```python
-agg_method = 'median'
+agg_method = "median"
 ```
   An example agg_method in a Callable:
   
@@ -263,7 +263,7 @@ agg_method = np.median
   An example agg_method in a dict of Callable:
   
 ```python
-agg_method=\{'median_success': np.median, 'avg_success': np.mean}
+agg_method = {"median_success": np.median, "avg_success": np.mean}
 ```
   
 - `return_responses_and_per_instance_result` _bool_ - Whether to also return responses
@@ -371,7 +371,7 @@ Start book keeping.
   Compact history contains one key per conversation, and the value is a dictionary
   like:
 ```python
-\{
+{
     "create_at": [0, 1],
     "cost": [0.1, 0.2],
 }
@@ -382,7 +382,7 @@ Start book keeping.
   If compact is False, the history dictionary will contain all the API calls: the key
   is the index of the API call, and the value is a dictionary like:
 ```python
-\{
+{
     "request": request_dict,
     "response": response_dict,
 }
@@ -390,12 +390,12 @@ Start book keeping.
   where request_dict is the request sent to OpenAI API, and response_dict is the response.
   For a conversation containing two API calls, the non-compact history dictionary will be like:
 ```python
-\{
-    0: \{
+{
+    0: {
         "request": request_dict_0,
         "response": response_dict_0,
     },
-    1: \{
+    1: {
         "request": request_dict_1,
         "response": response_dict_1,
     },
@@ -420,5 +420,5 @@ End book keeping.
 class ChatCompletion(Completion)
 ```
 
-(openai\<1) A class for OpenAI API ChatCompletion. Share the same API as Completion.
+`(openai<1)` A class for OpenAI API ChatCompletion. Share the same API as Completion.
 

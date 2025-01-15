@@ -290,10 +290,11 @@ customer_service = SwarmAgent(
 )
 ```
 
-### Initialize SwarmChat with `initiate_swarm_chat`
+### Initialize SwarmChat with `initiate_swarm_chat` / `a_initiate_swarm_chat` 
 
 After a set of swarm agents are created, you can initiate a swarm chat
-by calling `initiate_swarm_chat`.
+by calling `initiate_swarm_chat` (or `a_initiate_swarm_chat` for an
+asynchronous version).
 
 ```python
 chat_history, context_variables, last_active_agent = initiate_swarm_chat(

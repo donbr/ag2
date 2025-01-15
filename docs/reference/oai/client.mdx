@@ -112,24 +112,24 @@ def __init__(*,
   They can contain additional kwargs as allowed in the [create](/docs/reference/oai/client#create) method. E.g.,
   
 ```python
-config_list=[
-    \{
+config_list = [
+    {
         "model": "gpt-4",
         "api_key": os.environ.get("AZURE_OPENAI_API_KEY"),
         "api_type": "azure",
         "base_url": os.environ.get("AZURE_OPENAI_API_BASE"),
         "api_version": "2024-02-01",
     },
-    \{
+    {
         "model": "gpt-3.5-turbo",
         "api_key": os.environ.get("OPENAI_API_KEY"),
         "api_type": "openai",
         "base_url": "https://api.openai.com/v1",
     },
-    \{
+    {
         "model": "llama-7B",
         "base_url": "http://127.0.0.1:8080",
-    }
+    },
 ]
 ```
   
@@ -164,7 +164,7 @@ The config in each client will be overridden by the config.
 
   - context (Dict | None): The context to instantiate the prompt or messages. Default to None.
   It needs to contain keys that are used by the prompt template or the filter function.
-  E.g., `prompt="Complete the following sentence: \{prefix}, context=\{"prefix": "Today I feel"}`.
+  E.g., `prompt="Complete the following sentence: {prefix}, context={"prefix": "Today I feel"}`.
   The actual prompt will be:
   "Complete the following sentence: Today I feel".
   More examples can be found at [templating](/docs/Use-Cases/enhanced_inference#templating).
@@ -189,6 +189,7 @@ def yes_or_no_filter(context, response):
   
   - allow_format_str_template (bool | None): Whether to allow format string template in the config. Default to false.
   - api_version (str | None): The api version. Default to None. E.g., "2024-02-01".
+  
 
 **Raises**:
 

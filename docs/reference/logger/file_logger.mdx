@@ -33,7 +33,7 @@ Log a chat completion.
 
 ```python
 def log_new_agent(agent: ConversableAgent,
-                  init_args: dict[str, Any] = \{}) -> None
+                  init_args: dict[str, Any] = {}) -> None
 ```
 
 Log a new agent instance.
@@ -52,7 +52,7 @@ Log an event from an agent or a string source.
 ```python
 def log_new_wrapper(
         wrapper: OpenAIWrapper,
-        init_args: dict[str, LLMConfig | list[LLMConfig]] = \{}) -> None
+        init_args: dict[str, LLMConfig | list[LLMConfig]] = {}) -> None
 ```
 
 Log a new wrapper instance.

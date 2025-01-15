@@ -1,6 +1,11 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/agentchat_surfer.ipynb
+description: Browse the web with agents.
 source_notebook: /notebook/agentchat_surfer.ipynb
+tags:
+- web
+- nested chat
+- tool/function
 title: WebSurferAgent
 ---
 
@@ -69,7 +74,7 @@ clicking the file icon on the left panel and then choose “upload file”
 icon.
 
 ```python
-import autogen  # noqa: E402
+import autogen
 
 llm_config = {
     "timeout": 600,
@@ -104,7 +109,7 @@ Once you have your key, either set it as the `BING_API_KEY` system
 environment variable, or simply input your key below.
 
 ```python
-import os  # noqa: E402
+import os
 
 bing_api_key = os.environ["BING_API_KEY"]
 ```
@@ -114,7 +119,7 @@ bing_api_key = os.environ["BING_API_KEY"]
 We now create out WebSurferAgent, and a UserProxyAgent to surf the web.
 
 ```python
-from autogen.agentchat.contrib.web_surfer import WebSurferAgent  # noqa: E402
+from autogen.agentchat.contrib.web_surfer import WebSurferAgent
 
 web_surfer = WebSurferAgent(
     "web_surfer",

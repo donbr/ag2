@@ -7,14 +7,11 @@ Create an OpenAI-compatible client using Ollama's API.
 
 **Example**:
 
-  llm_config=\{
-- `"config_list"` - [\{
-- `"api_type"` - "ollama",
-- `"model"` - "mistral:7b-instruct-v0.3-q6_K"
-  }
-  ]}
-  
-  agent = autogen.AssistantAgent("my_agent", llm_config=llm_config)
+    ```python
+    llm_config = {"config_list": [{"api_type": "ollama", "model": "mistral:7b-instruct-v0.3-q6_K"}]}
+
+    agent = autogen.AssistantAgent("my_agent", llm_config=llm_config)
+    ```
   
   Install Ollama's python library using: pip install --upgrade ollama
   Install fix-busted-json library: pip install --upgrade fix-busted-json
@@ -86,7 +83,7 @@ We correct for any specific role orders and types, and convert tools to messages
 def response_to_tool_call(response_string: str) -> Any
 ```
 
-Attempts to convert the response to an object, aimed to align with function format [\{},\{}]
+Attempts to convert the response to an object, aimed to align with function format `[{},{}]`
 
 ### is\_valid\_tool\_call\_item
 

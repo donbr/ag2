@@ -13,17 +13,17 @@ Install the `boto3` package by running `pip install --upgrade boto3`.
 import autogen
 
 config_list = [
-    \{
+    {
         "api_type": "bedrock",
         "model": "meta.llama3-1-8b-instruct-v1:0",
         "aws_region": "us-west-2",
         "aws_access_key": "",
         "aws_secret_key": "",
-        "price" : [0.003, 0.015]
+        "price": [0.003, 0.015],
     }
 ]
 
-assistant = autogen.AssistantAgent("assistant", llm_config=\{"config_list": config_list})
+assistant = autogen.AssistantAgent("assistant", llm_config={"config_list": config_list})
 ```
 
 ## BedrockClient

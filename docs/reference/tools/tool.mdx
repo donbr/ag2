@@ -23,7 +23,10 @@ The tool can be registered with a ConversableAgent for use either with an LLM or
 ### \_\_init\_\_
 
 ```python
-def __init__(*, name: str, description: str, func: Callable[..., Any]) -> None
+def __init__(*,
+             name: Optional[str] = None,
+             description: Optional[str] = None,
+             func_or_tool: Union["Tool", Callable[..., Any]]) -> None
 ```
 
 Create a new Tool object.
@@ -32,7 +35,7 @@ Create a new Tool object.
 
 - `name` _str_ - The name of the tool.
 - `description` _str_ - The description of the tool.
-- `func` _Callable[..., Any]_ - The function that will be executed when the tool is called.
+- `func_or_tool` _Union[Tool, Callable[..., Any]]_ - The function or Tool instance to create a Tool from.
 
 ### register\_for\_llm
 
@@ -81,4 +84,38 @@ Execute the tool by calling its underlying function with the provided arguments.
 **Returns**:
 
   The result of executing the tool's function.
+
+### tool\_schema
+
+```python
+@property
+def tool_schema() -> dict[str, Any]
+```
+
+Get the schema for the tool.
+
+This is the preferred way of handling function calls with OpeaAI and compatible frameworks.
+
+### function\_schema
+
+```python
+@property
+def function_schema() -> dict[str, Any]
+```
+
+Get the schema for the function.
+
+This is the old way of handling function calls with OpenAI and compatible frameworks.
+It is provided for backward compatibility.
+
+### realtime\_tool\_schema
+
+```python
+@property
+def realtime_tool_schema() -> dict[str, Any]
+```
+
+Get the schema for the tool.
+
+This is the preferred way of handling function calls with OpeaAI and compatible frameworks.
 

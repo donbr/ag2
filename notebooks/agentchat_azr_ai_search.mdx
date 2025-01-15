@@ -1,6 +1,13 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/agentchat_azr_ai_search.ipynb
+description: This notebook demonstrates the use of Assistant Agents in conjunction
+  with Azure Cognitive Search and Azure Identity
 source_notebook: /notebook/agentchat_azr_ai_search.ipynb
+tags:
+- integration
+- RAG
+- Azure Identity
+- Azure AI Search
 title: Assistants with Azure Cognitive Search and Azure Identity
 ---
 
@@ -91,7 +98,6 @@ Next you will import the required packages for this notebook.
 import json
 import os
 
-import requests
 from azure.identity import DefaultAzureCredential
 from azure.search.documents import SearchClient
 from dotenv import load_dotenv
@@ -203,7 +209,6 @@ Finally, initiate a chat.
 
 ```python
 if __name__ == "__main__":
-    import asyncio
 
     async def main():
         with Cache.disk() as cache:

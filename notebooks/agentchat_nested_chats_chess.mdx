@@ -1,6 +1,11 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/agentchat_nested_chats_chess.ipynb
+description: LLM-backed agents playing chess with each other using nested chats.
 source_notebook: /notebook/agentchat_nested_chats_chess.ipynb
+tags:
+- nested chat
+- tool/function
+- orchestration
 title: Nested Chats for Tool Use in Conversational Chess
 ---
 
@@ -71,8 +76,6 @@ player_black_config_list = [
 Write functions for getting legal moves and making a move.
 
 ```python
-from typing import List
-
 import chess
 import chess.svg
 from IPython.display import display
@@ -221,7 +224,7 @@ player agent to chat with the board proxy agent to make a move, before
 communicating with the other player agent.
 
 In the code below, in each nested chat, the board proxy agent starts a
-conversation with the player agent using the message recieved from the
+conversation with the player agent using the message received from the
 other player agent (e.g., “Your move”). The two agents continue the
 conversation until a legal move is made using the `make_move` tool. The
 last message in the nested chat is a message from the player agent about

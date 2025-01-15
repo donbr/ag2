@@ -1,6 +1,13 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/agentchat_groupchat_RAG.ipynb
+description: Implement and manage a multi-agent chat system using AutoGen, where AI
+  assistants retrieve information, generate code, and interact collaboratively to
+  solve complex tasks, especially in areas not covered by their training data.
 source_notebook: /notebook/agentchat_groupchat_RAG.ipynb
+tags:
+- group chat
+- orchestration
+- RAG
 title: Group Chat with Retrieval Augmented Generation
 ---
 
@@ -38,7 +45,6 @@ function loads a list of configurations from an environment variable or
 a json file.
 
 ```python
-import chromadb
 from typing_extensions import Annotated
 
 import autogen
@@ -66,7 +72,7 @@ Learn more about configuring LLMs for agents [here](/docs/topics/llm_configurati
 
 ```python
 def termination_msg(x):
-    return isinstance(x, dict) and "TERMINATE" == str(x.get("content", ""))[-9:].upper()
+    return isinstance(x, dict) and str(x.get("content", ""))[-9:].upper() == "TERMINATE"
 
 
 llm_config = {"config_list": config_list, "timeout": 60, "temperature": 0.8, "seed": 1234}

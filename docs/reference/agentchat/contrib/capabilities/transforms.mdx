@@ -243,7 +243,7 @@ How to create and apply the transform:
 from autogen.agentchat.contrib.capabilities import transform_messages, transforms
 
 # Create Transform
-name_transform = transforms.TextMessageContentName(position="start", format_string="'\{name}' said:
+name_transform = transforms.TextMessageContentName(position="start", format_string="'{name}' said:
 ")
 
 # Create the TransformMessages
@@ -260,7 +260,7 @@ context_handling.add_to_agent(my_agent)
 
 ```python
 def __init__(position: str = "start",
-             format_string: str = "\{name}:\n",
+             format_string: str = "{name}:\n",
              deduplicate: bool = True,
              filter_dict: Optional[dict] = None,
              exclude_filter: bool = True)
@@ -269,8 +269,8 @@ def __init__(position: str = "start",
 **Arguments**:
 
 - `position` _str_ - The position to add the name to the content. The possible options are 'start' or 'end'. Defaults to 'start'.
-- `format_string` _str_ - The f-string to format the message name with. Use '\{name}' as a placeholder for the agent's name. Defaults to '\{name}:
-  ' and must contain '\{name}'.
+- `format_string` _str_ - The f-string to format the message name with. Use '{name}' as a placeholder for the agent's name. Defaults to '{name}:
+  ' and must contain '{name}'.
 - `deduplicate` _bool_ - Whether to deduplicate the formatted string so it doesn't appear twice (sometimes the LLM will add it to new messages itself). Defaults to True.
 - `filter_dict` _None or dict_ - A dictionary to filter out messages that you want/don't want to compress.
   If None, no filters will be applied.

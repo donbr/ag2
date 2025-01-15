@@ -42,7 +42,7 @@ represented by a placeholder image token. If the content is None, an empty strin
 def infer_lang(code: str) -> str
 ```
 
-infer the language for the code.
+Infer the language for the code.
 TODO: make it robust.
 
 ### extract\_code
@@ -79,7 +79,7 @@ def generate_code(pattern: str = CODE_BLOCK_PATTERN,
                   **config) -> tuple[str, float]
 ```
 
-(openai\<1) Generate code.
+`(openai<1)` Generate code.
 
 **Arguments**:
 
@@ -99,7 +99,7 @@ def generate_code(pattern: str = CODE_BLOCK_PATTERN,
 def improve_function(file_name, func_name, objective, **config)
 ```
 
-(openai\<1) Improve the function to achieve the objective.
+`(openai<1)` Improve the function to achieve the objective.
 
 ### improve\_code
 
@@ -107,7 +107,7 @@ def improve_function(file_name, func_name, objective, **config)
 def improve_code(files, objective, suggest_only=True, **config)
 ```
 
-(openai\<1) Improve the code to achieve a given objective.
+`(openai<1)` Improve the code to achieve a given objective.
 
 **Arguments**:
 
@@ -202,7 +202,7 @@ This function is not tested on MacOS.
 def generate_assertions(definition: str, **config) -> tuple[str, float]
 ```
 
-(openai\<1) Generate assertions for a function.
+`(openai<1)` Generate assertions for a function.
 
 **Arguments**:
 
@@ -228,7 +228,7 @@ def eval_function_completions(responses: list[str],
                               use_docker: Optional[bool] = True) -> dict
 ```
 
-(openai\<1) Select a response from a list of responses for the function completion task (using generated assertions), and/or evaluate if the task is successful using a gold test.
+`(openai<1)` Select a response from a list of responses for the function completion task (using generated assertions), and/or evaluate if the task is successful using a gold test.
 
 **Arguments**:
 
@@ -257,7 +257,7 @@ class PassAssertionFilter()
 def pass_assertions(context, response, **_)
 ```
 
-(openai\<1) Check if the response passes the assertions.
+`(openai<1)` Check if the response passes the assertions.
 
 ### implement
 
@@ -272,7 +272,7 @@ def implement(
 ) -> tuple[str, float]
 ```
 
-(openai\<1) Implement a function from a definition.
+`(openai<1)` Implement a function from a definition.
 
 **Arguments**:
 

@@ -1,6 +1,15 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/agentchat_society_of_mind.ipynb
+description: Explore the demonstration of the SocietyOfMindAgent in the AutoGen library,
+  which runs a group chat as an internal monologue, but appears to the external world
+  as a single agent, offering a structured way to manage complex interactions among
+  multiple agents and handle issues such as extracting responses from complex dialogues
+  and dealing with context window constraints.
 source_notebook: /notebook/agentchat_society_of_mind.ipynb
+tags:
+- orchestration
+- nested chat
+- group chat
 title: SocietyOfMindAgent
 ---
 
@@ -41,7 +50,7 @@ For more information, please refer to the [installation guide](/docs/installatio
 
 
 ```python
-import autogen  # noqa: E402
+import autogen
 
 llm_config = {
     "timeout": 600,
@@ -117,7 +126,7 @@ We now wrap the inner group-chat with the SocietyOfMind Agent, and
 create a UserProxy to talk to it.
 
 ```python
-from autogen.agentchat.contrib.society_of_mind_agent import SocietyOfMindAgent  # noqa: E402
+from autogen.agentchat.contrib.society_of_mind_agent import SocietyOfMindAgent
 
 task = "On which days in 2024 was Microsoft Stock higher than $370?"
 

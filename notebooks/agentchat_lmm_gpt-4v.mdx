@@ -1,6 +1,11 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/agentchat_lmm_gpt-4v.ipynb
+description: 'Leveraging multimodal models through two different methodologies: MultimodalConversableAgent
+  and VisionCapability.'
 source_notebook: /notebook/agentchat_lmm_gpt-4v.ipynb
+tags:
+- multimodal
+- gpt-4v
 title: 'Engaging with Multimodal Models: GPT-4V in AutoGen'
 ---
 
@@ -33,22 +38,16 @@ For more information, please refer to the [installation
 guide](../docs/installation/Installation).
 
 ```python
-import json
 import os
-import random
-import time
-from typing import Any, Callable, Dict, List, Optional, Tuple, Type, Union
 
 import matplotlib.pyplot as plt
 import numpy as np
-import requests
 from PIL import Image
-from termcolor import colored
 
 import autogen
 from autogen import Agent, AssistantAgent, ConversableAgent, UserProxyAgent
 from autogen.agentchat.contrib.capabilities.vision_capability import VisionCapability
-from autogen.agentchat.contrib.img_utils import get_pil_image, pil_to_data_uri
+from autogen.agentchat.contrib.img_utils import pil_to_data_uri
 from autogen.agentchat.contrib.multimodal_conversable_agent import MultimodalConversableAgent
 from autogen.code_utils import content_str
 ```
@@ -192,8 +191,7 @@ working_dir = "tmp/"
 ```python
 class FigureCreator(ConversableAgent):
     def __init__(self, n_iters=2, **kwargs):
-        """
-        Initializes a FigureCreator instance.
+        """Initializes a FigureCreator instance.
 
         This agent facilitates the creation of visualizations through a collaborative effort among its child agents: commander, coder, and critics.
 
@@ -826,8 +824,7 @@ and also call the custom function to get more information.
 
 ```python
 def my_description(image_url: str, image_data: Image = None, lmm_client: object = None) -> str:
-    """
-    This function takes an image URL and returns the description.
+    """This function takes an image URL and returns the description.
 
     Parameters:
         - image_url (str): The URL of the image.

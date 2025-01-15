@@ -103,7 +103,7 @@ you prepared your own vector db.
 - `dir_path` _Union[str, List[str]]_ - the path to the directory, file, url or a list of them.
 - `max_tokens` _Optional, int_ - the maximum number of tokens per chunk. Default is 4000.
 - `client` _Optional, API_ - the chromadb client. Default is None.
-- `db_path` _Optional, str_ - the path to the chromadb. Default is "tmp/chromadb.db". The default was `/tmp/chromadb.db` for version \<=0.2.24.
+- `db_path` _Optional, str_ - the path to the chromadb. Default is "tmp/chromadb.db". The default was `/tmp/chromadb.db` for version `<=0.2.24`.
 - `collection_name` _Optional, str_ - the name of the collection. Default is "all-my-documents".
 - `get_or_create` _Optional, bool_ - Whether to get or create the collection. Default is False. If True, the collection
   will be returned if it already exists. Will raise ValueError if the collection already exists and get_or_create is False.
@@ -123,7 +123,6 @@ you prepared your own vector db.
 
 **Returns**:
 
-  
   The chromadb client.
 
 ### query\_vector\_db
@@ -147,7 +146,7 @@ and query function.
 - `query_texts` _List[str]_ - the list of strings which will be used to query the vector db.
 - `n_results` _Optional, int_ - the number of results to return. Default is 10.
 - `client` _Optional, API_ - the chromadb compatible client. Default is None, a chromadb client will be used.
-- `db_path` _Optional, str_ - the path to the vector db. Default is "tmp/chromadb.db". The default was `/tmp/chromadb.db` for version \<=0.2.24.
+- `db_path` _Optional, str_ - the path to the vector db. Default is "tmp/chromadb.db". The default was `/tmp/chromadb.db` for version `<=0.2.24`.
 - `collection_name` _Optional, str_ - the name of the collection. Default is "all-my-documents".
 - `search_string` _Optional, str_ - the search string. Only docs that contain an exact match of this string will be retrieved. Default is "".
 - `embedding_model` _Optional, str_ - the embedding model to use. Default is "all-MiniLM-L6-v2". Will be ignored if
@@ -159,7 +158,6 @@ and query function.
 
 **Returns**:
 
-  
   The query result. The format is:
   
 ```python

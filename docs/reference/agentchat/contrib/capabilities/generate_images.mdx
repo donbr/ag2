@@ -112,11 +112,11 @@ message received by the agent.
     # Assuming you have llm configs configured for the LLMs you want to use and Dalle.
     # Create the agent
     agent = autogen.ConversableAgent(
-        name="dalle", llm_config=\{...}, max_consecutive_auto_reply=3, human_input_mode="NEVER"
+        name="dalle", llm_config={...}, max_consecutive_auto_reply=3, human_input_mode="NEVER"
     )
 
     # Create an ImageGenerator with desired settings
-    dalle_gen = generate_images.DalleImageGenerator(llm_config=\{...})
+    dalle_gen = generate_images.DalleImageGenerator(llm_config={...})
 
     # Add the ImageGeneration capability to the agent
     agent.add_capability(ImageGeneration(image_generator=dalle_gen))

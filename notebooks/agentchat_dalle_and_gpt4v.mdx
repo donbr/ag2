@@ -1,6 +1,10 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/agentchat_dalle_and_gpt4v.ipynb
+description: Multimodal agent chat with DALL-E and GPT-4v.
 source_notebook: /notebook/agentchat_dalle_and_gpt4v.ipynb
+tags:
+- multimodal
+- gpt-4v
 title: 'Agent Chat with Multimodal Models: DALLE  and GPT-4V'
 ---
 
@@ -20,25 +24,19 @@ pip install "pyautogen[lmm]>=0.2.3"
 
 
 ```python
-import json
 import os
-import pdb
-import random
 import re
-import time
-from typing import Any, Callable, Dict, List, Optional, Tuple, Type, Union
+from typing import Dict, List, Optional, Union
 
-import matplotlib.pyplot as plt
 import PIL
-import requests
+import matplotlib.pyplot as plt
+from PIL import Image
 from diskcache import Cache
 from openai import OpenAI
-from PIL import Image
-from termcolor import colored
 
 import autogen
 from autogen import Agent, AssistantAgent, ConversableAgent, UserProxyAgent
-from autogen.agentchat.contrib.img_utils import _to_pil, get_image_data, get_pil_image, gpt4v_formatter
+from autogen.agentchat.contrib.img_utils import _to_pil, get_image_data, get_pil_image
 from autogen.agentchat.contrib.multimodal_conversable_agent import MultimodalConversableAgent
 ```
 
@@ -86,8 +84,7 @@ We first create a warpper for DALLE call, make the
 
 ```python
 def dalle_call(client: OpenAI, model: str, prompt: str, size: str, quality: str, n: int) -> str:
-    """
-    Generate an image using OpenAI's DALL-E model and cache the result.
+    """Generate an image using OpenAI's DALL-E model and cache the result.
 
     This function takes a prompt and other parameters to generate an image using OpenAI's DALL-E model.
     It checks if the result is already cached; if so, it returns the cached image data. Otherwise,
@@ -135,8 +132,7 @@ show the DALLE agent later.
 
 ```python
 def extract_img(agent: Agent) -> PIL.Image:
-    """
-    Extracts an image from the last message of an agent and converts it to a PIL image.
+    """Extracts an image from the last message of an agent and converts it to a PIL image.
 
     This function searches the last message sent by the given agent for an image tag,
     extracts the image data, and then converts this data into a PIL (Python Imaging Library) image object.
@@ -269,8 +265,7 @@ plt.show()
 ```python
 class DalleCreator(AssistantAgent):
     def __init__(self, n_iters=2, **kwargs):
-        """
-        Initializes a DalleCreator instance.
+        """Initializes a DalleCreator instance.
 
         This agent facilitates the creation of visualizations through a collaborative effort among
         its child agents: dalle and critics.

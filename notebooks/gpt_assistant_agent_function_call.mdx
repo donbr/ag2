@@ -1,6 +1,11 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/gpt_assistant_agent_function_call.ipynb
+description: Use tools in a GPTAssistantAgent Multi-Agent System by utilizing functions
+  such as calling an API and writing to a file.
 source_notebook: /notebook/gpt_assistant_agent_function_call.ipynb
+tags:
+- OpenAI Assistant
+- tool/function
 title: 'From Dad Jokes To Sad Jokes: Function Calling with GPTAssistantAgent'
 ---
 
@@ -38,14 +43,12 @@ AutoGen requires Python 3.9 or newer. For this notebook, please install
 Import Dependencies
 
 ```python
-from typing import Annotated, Literal
-
 import requests
 
 import autogen
 from autogen import UserProxyAgent
 from autogen.agentchat.contrib.gpt_assistant_agent import GPTAssistantAgent
-from autogen.function_utils import get_function_schema
+from autogen.tools import get_function_schema
 
 config_list = autogen.config_list_from_json(
     env_or_file="OAI_CONFIG_LIST",
@@ -61,8 +64,7 @@ creates and returns a list of dad jokes.
 
 ```python
 def get_dad_jokes(search_term: str, page: int = 1, limit: int = 10) -> str:
-    """
-    Fetches a list of dad jokes based on a search term.
+    """Fetches a list of dad jokes based on a search term.
 
     Parameters:
     - search_term: The search term to find jokes about.
@@ -101,8 +103,7 @@ This function allows the Agents to write to a txt file.
 
 ```python
 def write_to_txt(content: str, filename: str = "dad_jokes.txt"):
-    """
-    Writes a formatted string to a text file.
+    """Writes a formatted string to a text file.
     Parameters:
 
     - content: The formatted string to write.

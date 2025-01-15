@@ -11,38 +11,72 @@ class RealtimeObserver(ABC)
 
 Observer for the OpenAI Realtime API.
 
-### client
+### \_\_init\_\_
 
 ```python
-@property
-def client() -> "OpenAIRealtimeClient"
+def __init__(*, logger: Optional[Logger] = None) -> None
 ```
 
-Get the client associated with the observer.
+Observer for the OpenAI Realtime API.
 
-### register\_client
+**Arguments**:
 
-```python
-def register_client(client: "OpenAIRealtimeClient") -> None
-```
-
-Register a client with the observer.
+- `logger` _Logger_ - The logger for the observer.
 
 ### run
 
 ```python
-@abstractmethod
-async def run() -> None
+async def run(agent: "RealtimeAgent") -> None
 ```
 
-Run the observer.
+Run the observer with the agent.
 
-### update
+When implementing, be sure to call `self._ready_event.set()` when the observer is ready to process events.
+
+**Arguments**:
+
+- `agent` _RealtimeAgent_ - The realtime agent attached to the observer.
+
+### run\_loop
 
 ```python
 @abstractmethod
-async def update(message: dict[str, Any]) -> None
+async def run_loop() -> None
 ```
 
-Update the observer with a message from the OpenAI Realtime API.
+Run the loop if needed.
+
+This method is called after the observer is ready to process events.
+Events will be processed by the on_event method, this is just a hook for additional processing.
+Use initialize_session to set up the session.
+
+### initialize\_session
+
+```python
+@abstractmethod
+async def initialize_session() -> None
+```
+
+Initialize the session for the observer.
+
+### wait\_for\_ready
+
+```python
+async def wait_for_ready() -> None
+```
+
+Get the event that is set when the observer is ready.
+
+### on\_event
+
+```python
+@abstractmethod
+async def on_event(event: dict[str, Any]) -> None
+```
+
+Handle an event from the OpenAI Realtime API.
+
+**Arguments**:
+
+- `event` _RealtimeServerEvent_ - The event from the OpenAI Realtime API.
 

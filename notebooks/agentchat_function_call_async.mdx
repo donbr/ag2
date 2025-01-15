@@ -1,6 +1,12 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/agentchat_function_call_async.ipynb
+description: Learn how to implement both synchronous and asynchronous function calls
+  using AssistantAgent and UserProxyAgent in AutoGen, with examples of their application
+  in individual and group chat settings for task execution with language models.
 source_notebook: /notebook/agentchat_function_call_async.ipynb
+tags:
+- tool/function
+- async
 title: Task Solving with Provided Tools as Functions (Asynchronous Function Calls)
 ---
 
@@ -40,6 +46,7 @@ For more information, please refer to the [installation guide](/docs/installatio
 
 
 ```python
+import asyncio
 import time
 
 from typing_extensions import Annotated
@@ -99,7 +106,7 @@ user_proxy = autogen.UserProxyAgent(
 @coder.register_for_llm(description="create a timer for N seconds")
 async def timer(num_seconds: Annotated[str, "Number of seconds in the timer."]) -> str:
     for i in range(int(num_seconds)):
-        time.sleep(1)
+        asyncio.sleep(1)
         # should print to stdout
     return "Timer is done!"
 
@@ -127,7 +134,7 @@ paused until the awaited function returns a result.
 
 ```python
 with Cache.disk() as cache:
-    await user_proxy.a_initiate_chat(  # noqa: F704
+    await user_proxy.a_initiate_chat(
         coder,
         message="Create a timer for 5 seconds and then a stopwatch for 5 seconds.",
         cache=cache,
@@ -231,7 +238,7 @@ message = """
 """
 
 with Cache.disk() as cache:
-    await user_proxy.a_initiate_chat(  # noqa: F704
+    await user_proxy.a_initiate_chat(
         manager,
         message=message,
         cache=cache,

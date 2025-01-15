@@ -1,6 +1,10 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/agentchat_image_generation_capability.ipynb
+description: Generate images with conversable agents.
 source_notebook: /notebook/agentchat_image_generation_capability.ipynb
+tags:
+- capability
+- multimodal
 title: Generate Dalle Images With Conversable Agents
 ---
 
@@ -31,8 +35,6 @@ First, let’s import all the required modules to run this example.
 
 ```python
 import os
-import re
-from typing import Dict, Optional
 
 from IPython.display import display
 from PIL.Image import Image
@@ -40,8 +42,6 @@ from PIL.Image import Image
 import autogen
 from autogen.agentchat.contrib import img_utils
 from autogen.agentchat.contrib.capabilities import generate_images
-from autogen.cache import Cache
-from autogen.oai import openai_utils
 ```
 
 Let’s define our LLM configs.

@@ -16,28 +16,63 @@ class RealtimeAgent(ConversableAgent)
 ```python
 def __init__(*,
              name: str,
-             audio_adapter: RealtimeObserver,
-             system_message: Optional[Union[
-                 str, list[str]]] = "You are a helpful AI Assistant.",
-             llm_config: Optional[Union[dict[str, Any],
-                                        Literal[False]]] = None,
-             voice: str = "alloy")
+             audio_adapter: Optional[RealtimeObserver] = None,
+             system_message: str = "You are a helpful AI Assistant.",
+             llm_config: dict[str, Any],
+             voice: str = "alloy",
+             logger: Optional[Logger] = None,
+             websocket: Optional[WebSocket] = None)
 ```
 
 (Experimental) Agent for interacting with the Realtime Clients.
 
 **Arguments**:
 
-- `name` - str
-  the name of the agent
-- `audio_adapter` - RealtimeObserver
-  adapter for streaming the audio from the client
-- `system_message` - str or list
-  the system message for the client
-- `llm_config` - dict or False
-  the config for the LLM
-- `voice` - str
-  the voice to be used for the agent
+- `name` _str_ - The name of the agent.
+- `audio_adapter` _Optional[RealtimeObserver] = None_ - The audio adapter for the agent.
+- `system_message` _str_ - The system message for the agent.
+- `llm_config` _dict[str, Any], bool_ - The config for the agent.
+- `voice` _str_ - The voice for the agent.
+- `websocket` _Optional[WebSocket] = None_ - WebSocket from WebRTC javascript client
+
+### logger
+
+```python
+@property
+def logger() -> Logger
+```
+
+Get the logger for the agent.
+
+### realtime\_client
+
+```python
+@property
+def realtime_client() -> RealtimeClientProtocol
+```
+
+Get the OpenAI Realtime Client.
+
+### registred\_realtime\_tools
+
+```python
+@property
+def registred_realtime_tools() -> dict[str, Tool]
+```
+
+Get the registered realtime tools.
+
+### register\_observer
+
+```python
+def register_observer(observer: RealtimeObserver) -> None
+```
+
+Register an observer with the Realtime Agent.
+
+**Arguments**:
+
+- `observer` _RealtimeObserver_ - The observer to register.
 
 ### register\_swarm
 
@@ -52,12 +87,9 @@ Register a swarm of agents with the Realtime Agent.
 
 **Arguments**:
 
-- `initial_agent` - SwarmAgent
-  the initial agent in the swarm
-- `agents` - list of SwarmAgent
-  the agents in the swarm
-- `system_message` - str
-  the system message for the client
+- `initial_agent` _SwarmAgent_ - The initial agent.
+- `agents` _list[SwarmAgent]_ - The agents in the swarm.
+- `system_message` _str_ - The system message for the agent.
 
 ### run
 
@@ -66,6 +98,27 @@ async def run() -> None
 ```
 
 Run the agent.
+
+### register\_realtime\_function
+
+```python
+def register_realtime_function(
+        *,
+        name: Optional[str] = None,
+        description: Optional[str] = None) -> Callable[[Union[F, Tool]], Tool]
+```
+
+Decorator for registering a function to be used by an agent.
+
+**Arguments**:
+
+- `name` _str_ - The name of the function.
+- `description` _str_ - The description of the function.
+  
+
+**Returns**:
+
+  Callable[[Union[F, Tool]], Tool]: The decorator for registering a function.
 
 ### reset\_answer
 

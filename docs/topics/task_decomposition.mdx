@@ -36,12 +36,11 @@ from autogen import (
     GroupChat,
     GroupChatManager,
     UserProxyAgent,
-    config_list_from_json,
     register_function,
 )
 from autogen.agentchat.contrib import agent_builder
 from autogen.cache import Cache
-from autogen.coding import DockerCommandLineCodeExecutor, LocalCommandLineCodeExecutor
+from autogen.coding import LocalCommandLineCodeExecutor
 
 config_list = [
     {"model": "gpt-4-1106-preview", "api_key": os.environ["OPENAI_API_KEY"]},
@@ -1587,8 +1586,7 @@ code_executor = LocalCommandLineCodeExecutor(work_dir="coding")
 
 
 def run_meta_prompting(expert_name: str, expert_identity: str, task: str) -> str:
-    """
-    Run Meta-prompting to solve the task.
+    """Run Meta-prompting to solve the task.
     The method is adapted from "Meta-Prompting: Enhancing Language Models with Task-Agnostic Scaffolding".
     Paper available at https://arxiv.org/abs/2401.12954
     """

@@ -7,16 +7,18 @@ Create an OpenAI-compatible client using Cohere's API.
 
 **Example**:
 
-  llm_config=\{
-- `"config_list"` - [\{
-- `"api_type"` - "cohere",
-- `"model"` - "command-r-plus",
-- `"api_key"` - os.environ.get("COHERE_API_KEY")
-- `"client_name"` - "autogen-cohere", # Optional parameter
-  }
-  ]}
-  
-  agent = autogen.AssistantAgent("my_agent", llm_config=llm_config)
+    ```python
+    llm_config={
+        "config_list": [{
+            "api_type": "cohere",
+            "model": "command-r-plus",
+            "api_key": os.environ.get("COHERE_API_KEY")
+            "client_name": "autogen-cohere", # Optional parameter
+            }
+    ]}
+
+    agent = autogen.AssistantAgent("my_agent", llm_config=llm_config)
+    ```
   
   Install Cohere's python library using: pip install --upgrade cohere
   

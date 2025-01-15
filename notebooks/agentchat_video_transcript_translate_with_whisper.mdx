@@ -1,6 +1,11 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/agentchat_video_transcript_translate_with_whisper.ipynb
+description: Use tools to extract and translate the transcript of a video file.
 source_notebook: /notebook/agentchat_video_transcript_translate_with_whisper.ipynb
+tags:
+- whisper
+- multimodal
+- tool/function
 title: Translating Video audio using Whisper and GPT-3.5-turbo
 ---
 
@@ -196,7 +201,7 @@ def recognize_transcript_from_video(filepath: Annotated[str, "path of the video 
     except FileNotFoundError:
         return "The specified audio file could not be found."
     except Exception as e:
-        return f"An unexpected error occurred: {str(e)}"
+        return f"An unexpected error occurred: {e!s}"
 ```
 
 Now, start the chat:

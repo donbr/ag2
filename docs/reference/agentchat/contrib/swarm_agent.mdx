@@ -14,7 +14,7 @@ Handles the next step in the conversation when an agent doesn't suggest a tool c
 
 **Arguments**:
 
-- `agent` - The agent to hand off to or the after work option. Can be a SwarmAgent, a string name of a SwarmAgent, an AfterWorkOption, or a Callable.
+- `agent` _Union[AfterWorkOption, SwarmAgent, str, Callable]_ - The agent to hand off to or the after work option. Can be a SwarmAgent, a string name of a SwarmAgent, an AfterWorkOption, or a Callable.
   The Callable signature is:
   def my_after_work_func(last_speaker: SwarmAgent, messages: List[Dict[str, Any]], groupchat: GroupChat) -> Union[AfterWorkOption, SwarmAgent, str]:
 
@@ -29,11 +29,11 @@ Defines a condition for transitioning to another agent or nested chats
 
 **Arguments**:
 
-- `target` - The agent to hand off to or the nested chat configuration. Can be a SwarmAgent or a Dict.
+- `target` _Union[SwarmAgent, dict[str, Any]]_ - The agent to hand off to or the nested chat configuration. Can be a SwarmAgent or a Dict.
   If a Dict, it should follow the convention of the nested chat configuration, with the exception of a carryover configuration which is unique to Swarms.
   Swarm Nested chat documentation: https://docs.ag2.ai/docs/topics/swarm#registering-handoffs-to-a-nested-chat
-- `condition` - The condition for transitioning to the target agent, evaluated by the LLM to determine whether to call the underlying function/tool which does the transition.
-- `available` - Optional condition to determine if this ON_CONDITION is available. Can be a Callable or a string.
+- `condition` _str_ - The condition for transitioning to the target agent, evaluated by the LLM to determine whether to call the underlying function/tool which does the transition.
+- `available` _Union[Callable, str]_ - Optional condition to determine if this ON_CONDITION is available. Can be a Callable or a string.
   If a string, it will look up the value of the context variable with that name, which should be a bool.
 
 ## UPDATE\_SYSTEM\_MESSAGE
@@ -47,10 +47,35 @@ Update the agent's system message before they reply
 
 **Arguments**:
 
-- `update_function` - The string or function to update the agent's system message. Can be a string or a Callable.
+- `update_function` _Union[Callable, str]_ - The string or function to update the agent's system message. Can be a string or a Callable.
   If a string, it will be used as a template and substitute the context variables.
   If a Callable, it should have the signature:
   def my_update_function(agent: ConversableAgent, messages: List[Dict[str, Any]]) -> str
+
+### create\_swarm\_transition
+
+```python
+def create_swarm_transition(
+    initial_agent: "SwarmAgent", tool_execution: "SwarmAgent",
+    swarm_agent_names: list[str], user_agent: Optional[UserProxyAgent],
+    swarm_after_work: Optional[Union[AfterWorkOption, Callable]]
+) -> Callable[["SwarmAgent", GroupChat], Optional[Agent]]
+```
+
+Creates a transition function for swarm chat with enclosed state for the use_initial_agent.
+
+**Arguments**:
+
+- `initial_agent` _SwarmAgent_ - The first agent to speak
+- `tool_execution` _SwarmAgent_ - The tool execution agent
+- `swarm_agent_names` _list[str]_ - List of all agent names
+- `user_agent` _UserProxyAgent_ - Optional user proxy agent
+- `swarm_after_work` _Union[AfterWorkOption, Callable]_ - Swarm-level after work
+  
+
+**Returns**:
+
+  Callable transition function (for sync and async swarm chats)
 
 ### initiate\_swarm\_chat
 
@@ -68,6 +93,49 @@ def initiate_swarm_chat(
 ```
 
 Initialize and run a swarm chat
+
+**Arguments**:
+
+- `initial_agent` - The first receiving agent of the conversation.
+- `messages` - Initial message(s).
+- `agents` - List of swarm agents.
+- `user_agent` - Optional user proxy agent for falling back to.
+- `max_rounds` - Maximum number of conversation rounds.
+- `context_variables` - Starting context variables.
+- `after_work` - Method to handle conversation continuation when an agent doesn't select the next agent. If no agent is selected and no tool calls are output, we will use this method to determine the next agent.
+  Must be a AFTER_WORK instance (which is a dataclass accepting a SwarmAgent, AfterWorkOption, A str (of the AfterWorkOption)) or a callable.
+  AfterWorkOption:
+  - TERMINATE (Default): Terminate the conversation.
+  - REVERT_TO_USER : Revert to the user agent if a user agent is provided. If not provided, terminate the conversation.
+  - STAY : Stay with the last speaker.
+  
+- `Callable` - A custom function that takes the current agent, messages, and groupchat as arguments and returns an AfterWorkOption or a SwarmAgent (by reference or string name).
+            ```python
+            def custom_afterwork_func(last_speaker: SwarmAgent, messages: List[Dict[str, Any]], groupchat: GroupChat) -> Union[AfterWorkOption, SwarmAgent, str]:
+            ```
+
+**Returns**:
+
+- `ChatResult` - Conversations chat history.
+  Dict[str, Any]: Updated Context variables.
+- `SwarmAgent` - Last speaker.
+
+### a\_initiate\_swarm\_chat
+
+```python
+async def a_initiate_swarm_chat(
+    initial_agent: "SwarmAgent",
+    messages: Union[list[dict[str, Any]], str],
+    agents: list["SwarmAgent"],
+    user_agent: Optional[UserProxyAgent] = None,
+    max_rounds: int = 20,
+    context_variables: Optional[dict[str, Any]] = None,
+    after_work: Optional[Union[AfterWorkOption, Callable]] = AFTER_WORK(
+        AfterWorkOption.TERMINATE)
+) -> tuple[ChatResult, dict[str, Any], "SwarmAgent"]
+```
+
+Initialize and run a swarm chat asynchronously
 
 **Arguments**:
 

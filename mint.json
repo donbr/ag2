@@ -6,7 +6,7 @@
     "light": "/logo/ag2.svg"
   },
   "metadata": {
-    "og:image": "https://media.githubusercontent.com/media/harishmohanraj/ag2/refs/heads/main/website/static/img/cover.png"
+    "og:image": "https://media.githubusercontent.com/media/ag2ai/ag2/refs/heads/main/website/static/img/cover.png"
   },
   "favicon": "/logo/ag2.svg",
   "search": {
@@ -254,7 +254,10 @@
                           ]
                         }
                       ]
-                    }
+                    },
+                    "docs/reference/agentchat/contrib/captainagent/agent_builder",
+                    "docs/reference/agentchat/contrib/captainagent/captainagent",
+                    "docs/reference/agentchat/contrib/captainagent/tool_retriever"
                   ]
                 },
                 {
@@ -266,7 +269,9 @@
                     "docs/reference/agentchat/contrib/graph_rag/graph_query_engine",
                     "docs/reference/agentchat/contrib/graph_rag/graph_rag_capability",
                     "docs/reference/agentchat/contrib/graph_rag/neo4j_graph_query_engine",
-                    "docs/reference/agentchat/contrib/graph_rag/neo4j_graph_rag_capability"
+                    "docs/reference/agentchat/contrib/graph_rag/neo4j_graph_rag_capability",
+                    "docs/reference/agentchat/contrib/graph_rag/neo4j_native_graph_query_engine",
+                    "docs/reference/agentchat/contrib/graph_rag/neo4j_native_graph_rag_capability"
                   ]
                 },
                 {
@@ -280,9 +285,7 @@
                     "docs/reference/agentchat/contrib/vectordb/utils"
                   ]
                 },
-                "docs/reference/agentchat/contrib/agent_builder",
                 "docs/reference/agentchat/contrib/agent_optimizer",
-                "docs/reference/agentchat/contrib/captainagent",
                 "docs/reference/agentchat/contrib/gpt_assistant_agent",
                 "docs/reference/agentchat/contrib/img_utils",
                 "docs/reference/agentchat/contrib/llamaindex_conversable_agent",
@@ -296,19 +299,19 @@
                 "docs/reference/agentchat/contrib/society_of_mind_agent",
                 "docs/reference/agentchat/contrib/swarm_agent",
                 "docs/reference/agentchat/contrib/text_analyzer_agent",
-                "docs/reference/agentchat/contrib/tool_retriever",
                 "docs/reference/agentchat/contrib/web_surfer"
               ]
             },
             {
               "group": "agentchat.realtime_agent",
               "pages": [
-                "docs/reference/agentchat/realtime_agent/client",
                 "docs/reference/agentchat/realtime_agent/function_observer",
+                "docs/reference/agentchat/realtime_agent/oai_realtime_client",
                 "docs/reference/agentchat/realtime_agent/realtime_agent",
+                "docs/reference/agentchat/realtime_agent/realtime_client",
                 "docs/reference/agentchat/realtime_agent/realtime_observer",
-                "docs/reference/agentchat/realtime_agent/twilio_observer",
-                "docs/reference/agentchat/realtime_agent/websocket_observer"
+                "docs/reference/agentchat/realtime_agent/twilio_audio_adapter",
+                "docs/reference/agentchat/realtime_agent/websocket_audio_adapter"
               ]
             },
             "docs/reference/agentchat/agent",
@@ -341,6 +344,7 @@
                 "docs/reference/coding/jupyter/base",
                 "docs/reference/coding/jupyter/docker_jupyter_server",
                 "docs/reference/coding/jupyter/embedded_ipython_code_executor",
+                "docs/reference/coding/jupyter/helpers",
                 "docs/reference/coding/jupyter/jupyter_client",
                 "docs/reference/coding/jupyter/jupyter_code_executor",
                 "docs/reference/coding/jupyter/local_jupyter_server"
@@ -394,7 +398,19 @@
           "group": "logger",
           "pages": [
             "docs/reference/logger/base_logger",
-            "docs/reference/logger/file_logger"
+            "docs/reference/logger/file_logger",
+            "docs/reference/logger/logger_factory",
+            "docs/reference/logger/logger_utils",
+            "docs/reference/logger/sqlite_logger"
+          ]
+        },
+        {
+          "group": "messages",
+          "pages": [
+            "docs/reference/messages/agent_messages",
+            "docs/reference/messages/base_message",
+            "docs/reference/messages/client_messages",
+            "docs/reference/messages/print_message"
           ]
         },
         {
@@ -418,18 +434,20 @@
         {
           "group": "tools",
           "pages": [
+            "docs/reference/tools/dependency_injection",
+            "docs/reference/tools/function_utils",
             "docs/reference/tools/tool"
           ]
         },
         "docs/reference/browser_utils",
         "docs/reference/code_utils",
         "docs/reference/exception_utils",
-        "docs/reference/function_utils",
         "docs/reference/graph_utils",
         "docs/reference/math_utils",
         "docs/reference/retrieve_utils",
         "docs/reference/runtime_logging",
-        "docs/reference/token_count_utils"
+        "docs/reference/token_count_utils",
+        "docs/reference/types"
       ]
     },
     {
@@ -475,6 +493,9 @@
       "group": "Talks",
       "pages": [
         "talks/future_talks/index",
+        "talks/2024-12-19-special_talk/index",
+        "talks/2024-12-19/index",
+        "talks/2024-12-12/index",
         "talks/2024-11-28/index",
         "talks/2024-11-25/index",
         "talks/2024-11-18/index",
@@ -494,9 +515,13 @@
         {
           "group": "Recent posts",
           "pages": [
-            "blog/2024-12-20-RealtimeAgent/index",
+            "blog/2025-01-10-WebSockets/index",
+            "blog/2025-01-09-RealtimeAgent-over-WebRTC/index",
+            "blog/2025-01-08-RealtimeAgent-over-websocket/index",
+            "blog/2025-01-07-Tools-Dependency-Injection/index",
             "blog/2024-12-20-Tools-interoperability/index",
             "blog/2024-12-20-Reasoning-Update/index",
+            "blog/2024-12-20-RealtimeAgent/index",
             "blog/2024-12-06-FalkorDB-Structured/index",
             "blog/2024-12-02-ReasoningAgent2/index",
             "blog/2024-11-27-Prompt-Leakage-Probing/index",
@@ -542,6 +567,9 @@
           "pages": [
             "notebooks/Notebooks",
             "notebooks/agentchat_RetrieveChat_mongodb",
+            "notebooks/JSON_mode_example",
+            "notebooks/agentchat_MathChat",
+            "notebooks/agentchat_RetrieveChat",
             "notebooks/agentchat_RetrieveChat_pgvector",
             "notebooks/agentchat_RetrieveChat_qdrant",
             "notebooks/agentchat_agentops",
@@ -549,6 +577,7 @@
             "notebooks/agentchat_auto_feedback_from_code_execution",
             "notebooks/agentchat_azr_ai_search",
             "notebooks/agentchat_captainagent",
+            "notebooks/agentchat_captainagent_crosstool",
             "notebooks/agentchat_cost_token_tracking",
             "notebooks/agentchat_custom_model",
             "notebooks/agentchat_dalle_and_gpt4v",
@@ -557,6 +586,8 @@
             "notebooks/agentchat_function_call_async",
             "notebooks/agentchat_function_call_code_writing",
             "notebooks/agentchat_function_call_currency_calculator",
+            "notebooks/agentchat_graph_rag_falkordb",
+            "notebooks/agentchat_graph_rag_neo4j",
             "notebooks/agentchat_group_chat_with_llamaindex_agents",
             "notebooks/agentchat_groupchat",
             "notebooks/agentchat_groupchat_RAG",
@@ -588,6 +619,8 @@
             "notebooks/agentchat_oai_code_interpreter",
             "notebooks/agentchat_openlit",
             "notebooks/agentchat_planning",
+            "notebooks/agentchat_realtime_swarm",
+            "notebooks/agentchat_realtime_websocket",
             "notebooks/agentchat_reasoning_agent",
             "notebooks/agentchat_society_of_mind",
             "notebooks/agentchat_sql_spider",
@@ -595,6 +628,7 @@
             "notebooks/agentchat_structured_outputs",
             "notebooks/agentchat_surfer",
             "notebooks/agentchat_swarm",
+            "notebooks/agentchat_swarm_enhanced",
             "notebooks/agentchat_swarm_graphrag_telemetry_trip_planner",
             "notebooks/agentchat_swarm_graphrag_trip_planner",
             "notebooks/agentchat_swarm_w_groupchat_legacy",
@@ -613,16 +647,15 @@
             "notebooks/autobuild_agent_library",
             "notebooks/autobuild_basic",
             "notebooks/autogen_uniformed_api_calling",
+            "notebooks/config_loader_utility_functions",
             "notebooks/gpt_assistant_agent_function_call",
             "notebooks/lats_search",
-            "notebooks/JSON_mode_example",
-            "notebooks/agentchat_RetrieveChat",
-            "notebooks/agentchat_graph_rag_neo4j",
-            "notebooks/agentchat_swarm_enhanced",
             "notebooks/tools_interoperability",
-            "notebooks/agentchat_realtime_swarm",
-            "notebooks/agentchat_reasoning_agent",
-            "notebooks/agentchat_captainagent_crosstool"
+            "notebooks/agentchat_tabular_data_rag_workflow",
+            "notebooks/agentchat_realtime_webrtc",
+            "notebooks/tools_dependency_injection",
+            "notebooks/tools_chat_context_dependency_injection",
+            "notebooks/agentchat_graph_rag_neo4j_native"
           ]
         },
         "notebooks/Gallery"
